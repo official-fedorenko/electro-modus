@@ -1,0 +1,14 @@
+/* Menu */
+
+.sidebar__title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
