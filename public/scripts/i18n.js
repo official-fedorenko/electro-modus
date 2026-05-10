@@ -7,11 +7,15 @@
         elements.forEach(el => {
             const key = el.getAttribute('data-t');
             if (translations[currentLang] && translations[currentLang][key]) {
-                // Если в теге есть HTML (например, <br>), используем innerHTML
-                if (translations[currentLang][key].includes('<')) {
-                    el.innerHTML = translations[currentLang][key];
+                const translation = translations[currentLang][key];
+                
+                // Если это инпут или текстовое поле и ключ содержит "placeholder" (или у него есть этот атрибут)
+                if ((el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') && el.hasAttribute('placeholder')) {
+                    el.placeholder = translation;
+                } else if (translation.includes('<')) {
+                    el.innerHTML = translation;
                 } else {
-                    el.textContent = translations[currentLang][key];
+                    el.textContent = translation;
                 }
             }
         });
