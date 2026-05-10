@@ -70,8 +70,25 @@ const prices = [
 
 console.log('🔄 Starting price import...');
 
-// First clear existing prices to avoid duplicates
-db.run('DELETE FROM prices', (err) => {
+// Ensure table exists
+db.serialize(() => {
+    db.run(`
+        CREATE TABLE IF NOT EXISTS prices (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            category_lt TEXT,
+            category_ru TEXT,
+            name_lt TEXT,
+            name_ru TEXT,
+            unit_lt TEXT,
+            unit_ru TEXT,
+            price REAL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    `);
+
+    // First clear existing prices to avoid duplicates
+    db.run('DELETE FROM prices', (err) => {
+
     if (err) {
         console.error('❌ Error clearing prices table:', err.message);
         db.close();
@@ -103,4 +120,5 @@ db.run('DELETE FROM prices', (err) => {
             }
         );
     });
+});
 });
