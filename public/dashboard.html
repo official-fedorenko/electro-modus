@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет — ЭлектроМонтаж Pro</title>
+    <meta name="description" content="Кабинет клиента">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src="./scripts/auth.js" defer></script>
+</head>
+
+<body>
+    <header class="topbar">
+        <a href="index.html" class="topbar__brand">
+            <div class="topbar__icon">⚡</div>
+            <span class="topbar__name">Electro Modus</span>
+        </a>
+        <div class="topbar__contact">
+            <a href="index.html" class="topbar__cta">На главную</a>
+            <button id="btn-admin-panel" class="btn btn--primary" style="margin-left: 10px; display: none;">Админ панель</button>
+            <button id="btn-logout" class="btn btn--ghost" style="margin-left: 10px;">Выйти</button>
+        </div>
+    </header>
+
+    <div class="layout">
+        <main class="content" style="padding: 40px 20px;">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <section class="section">
+                <div class="dashboard-box">
+                    <h2 class="section__title">Добро пожаловать в личный кабинет!</h2>
+                    <p class="section__subtitle" id="dashboard-email">Загрузка...</p>
+                    
+                    <div class="dashboard-cards">
+                        <div class="card">
+                            <div class="card__icon">📄</div>
+                            <h3 class="card__title">Ваши заявки</h3>
+                            <p class="card__text">Здесь будет список ваших активных и завершенных проектов.</p>
+                            <span class="card__tag">В разработке</span>
+                        </div>
+                        <div class="card">
+                            <div class="card__icon">💬</div>
+                            <h3 class="card__title">Сообщения</h3>
+                            <p class="card__text">История переписки с менеджером и электриком.</p>
+                            <span class="card__tag">В разработке</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            </div>
+        </main>
+    </div>
+    <!-- ADMIN MODAL -->
+    <div id="admin-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" id="close-admin-modal">&times;</span>
+            <h2 class="section__title" style="text-align: left; margin-bottom: 10px;">Панель управления</h2>
+            <p class="section__subtitle" style="text-align: left;">Выберите раздел для управления системой</p>
+            <div class="admin-menu-grid">
+                <a href="admin.html" class="admin-menu-item">
+                    <div class="admin-menu-icon">👥</div>
+                    <span>Пользователи</span>
+                </a>
+                <a href="admin-prices.html" class="admin-menu-item">
+                    <div class="admin-menu-icon">💰</div>
+                    <span>Цены</span>
+                </a>
+                <div class="admin-menu-item disabled">
+                    <div class="admin-menu-icon">⚙️</div>
+                    <span>Настройки</span>
+                </div>
+                <div class="admin-menu-item disabled">
+                    <div class="admin-menu-icon">📊</div>
+                    <span>Статистика</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

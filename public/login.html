@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="lt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-t="auth_login_title">Prisijungimas — Electro Modus</title>
+    <meta name="description" content="Авторизация">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src="./scripts/translations.js" defer></script>
+    <script src="./scripts/i18n.js" defer></script>
+    <script src="./scripts/auth.js" defer></script>
+</head>
+
+<body>
+    <header class="topbar">
+        <a href="index.html" class="topbar__brand">
+            <div class="topbar__icon">⚡</div>
+            <span class="topbar__name"><span data-t="company_name">Electro Modus</span></span>
+        </a>
+        <div class="topbar__contact">
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="lt">LT</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
+            <a href="index.html" class="topbar__cta" data-t="nav_back">Atgal į pagrindinį</a>
+        </div>
+    </header>
+
+    <div class="layout layout--centered">
+        <main class="content content--auth">
+            <div class="auth-box">
+                <h2 class="auth-box__title" data-t="auth_login_title">Prisijungimas</h2>
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label class="form-label" for="login-email" data-t="auth_email_label">El. paštas</label>
+                        <input type="email" id="login-email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="login-password" data-t="auth_pass_label">Slaptažodis</label>
+                        <input type="password" id="login-password" class="form-input" required>
+                    </div>
+                    <div id="login-error" class="form-error"></div>
+                    <button type="submit" class="btn btn--primary auth-form__btn" data-t="auth_btn_login">Prisijungti</button>
+                </form>
+                <div class="auth-box__footer">
+                    <p><span data-t="auth_no_account">Neturite paskyros?</span> <a href="register.html" data-t="auth_link_reg">Registruotis</a></p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

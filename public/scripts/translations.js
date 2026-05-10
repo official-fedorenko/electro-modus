@@ -1,0 +1,516 @@
+const translations = {
+    lt: {
+        // Navigation
+        "nav_home": "Pagrindinis",
+        "nav_services": "Paslaugos",
+        "nav_projects": "Projektai",
+        "nav_about": "Apie mus",
+        "nav_contact": "Kontaktai",
+        "nav_price": "Kainoraštis",
+        "nav_docs": "Dokumentai",
+        "nav_rekvizitai": "Įmonės duomenys",
+        "company_info_title": "Teisinė informacija",
+        "company_name_label": "Pavadinimas",
+        "company_code_label": "Įmonės kodas",
+        "company_address_label": "Buveinės adresas",
+        "company_founded_label": "Įregistravimo data",
+        "company_activity_label": "Veiklos sritis",
+        "company_employees_label": "Darbuotojų skaičius",
+        "company_info_descr": "Oficialūs Electro modus, MB duomenys pagal valstybinius registrus.",
+        "nav_certs": "Sertifikatai",
+        "nav_licenses": "Licencijos",
+
+        // Topbar / Shared
+        "company_name": "Electro Modus",
+        "cta_get_calc": "Gauti pasiūlymą",
+        "cta_login": "Prisijungti",
+        "cta_dashboard": "Kabinetas",
+        "phone_label": "📞 +370 600 00 000",
+        "consult_title": "Reikia konsultacijos?",
+        "consult_text": "Skambinkite — atsakysime į visus klausimus nemokamai.",
+        "btn_call": "Skambinti",
+
+        // Hero
+        "hero_badge": "⚡ Profesionalus elektros montavimas",
+        "hero_title": "Jūsų sėkmės energija<br>patikimose rankose",
+        "hero_subtitle": "Projektuojame ir įgyvendiname sudėtingus elektros montavimo sprendimus verslui ir privatiems namams Lietuvoje. Kokybė, patikrinta metais.",
+        "hero_btn_consult": "Gauti konsultaciją",
+        "hero_btn_projects": "Mūsų darbai",
+        "hero_stat_exp": "metų patirtis",
+        "hero_stat_obj": "objektų",
+        "hero_stat_guar": "garantija",
+
+        // Services
+        "services_title": "Ką mes siūlome",
+        "services_subtitle": "Platus paslaugų spektras nuo rozetės pakeitimo iki gamyklų automatizavimo.",
+        "service_1_title": "Vidaus montavimas",
+        "service_1_text": "Kabelių tiesimas, skydų surinkimas, rozečių ir jungiklių montavimas.",
+        "service_1_tag": "Populiaru",
+        "service_2_title": "Pramoniniai tinklai",
+        "service_2_text": "Įrangos, maitinimo linijų ir automatikos sistemų (AKTS) montavimas.",
+        "service_3_title": "Išmanieji namai",
+        "service_3_text": "Šviesos, klimato ir saugumo valdymas iš jūsų išmaniojo telefono.",
+        "service_4_title": "Apšvietimas",
+        "service_4_text": "Fasado, interjero ir lauko apšvietimo projektavimas ir montavimas.",
+
+        // Why Us
+        "why_title": "Kodėl renkasi mus",
+        "why_subtitle": "Jūsų saugumas — mūsų pagrindinis prioritetas.",
+        "feat_1_title": "Kvalifikacija",
+        "feat_1_text": "Visi mūsų meistrai turi valstybinius atestatus ir leidimus bet kokio sudėtingumo darbams.",
+        "feat_2_title": "Skaidrumas",
+        "feat_2_text": "Sudarome išsamią sąmatą prieš pradedant darbus. Kaina montavimo metu nesikeičia.",
+        "feat_3_title": "Įranga",
+        "feat_3_text": "Naudojame tik sertifikuotas medžiagas ir profesionalius įrankius (Hilti, Fluke).",
+
+        // Process
+        "proc_title": "Kaip mes dirbame",
+        "proc_1_title": "Užklausa",
+        "proc_1_text": "Palikite užklausą arba skambinkite. Aptariame užduotį.",
+        "proc_2_title": "Matavimas",
+        "proc_2_text": "Nemokamas inžinieriaus išvykimas įvertinimui ir konsultacijai.",
+        "proc_3_title": "Montavimas",
+        "proc_3_text": "Darbų atlikimas griežtai pagal grafiką ir saugos standartus.",
+        "proc_4_title": "Pridavimas",
+        "proc_4_text": "Sistemos patikra, akto pasirašymas ir garantijos perdavimas.",
+
+        // Testimonials
+        "testim_title": "Klientų atsiliepimai",
+        "testim_1_text": "Dirbome prie sandėlio automatizavimo projekto. Viskas aišku, laiku, skydai surinkti idealiai. Rekomenduoju kaip patikimus partnerius.",
+        "testim_1_name": "Andrius Valatka",
+        "testim_1_role": "Logistikos centro direktorius",
+        "testim_2_text": "Įvedinėjo instaliaciją naujame name. Patarė kaip sutaupyti medžiagoms neprarandant kokybės. Labai patenkinta rezultatu.",
+        "testim_2_name": "Jelena Kuznecova",
+        "testim_2_role": "Privati namo savininkė",
+
+        // CTA Banner
+        "cta_banner_title": "Pasiruošę pradėti projektą?",
+        "cta_banner_text": "Gaukite išsamų jūsų objekto sąmatos skaičiavimą jau šiandien. Tai nemokama ir niekuo neįpareigoja.",
+        "cta_banner_btn": "Palikti užklausą",
+
+        // Footer
+        "footer_rights": "© 2024 Electro Modus. Visos teisės saugomos.",
+        "footer_privacy": "Privatumas",
+        "footer_terms": "Sąlygos",
+        "footer_reg": "Reg. Nr. 307068455 · Lietuva",
+
+        // Services Page
+        "srv_main_title": "Mūsų paslaugos",
+        "srv_main_subtitle": "Pilnas elektros montavimo darbų ciklas — nuo projekto iki pridavimo",
+        "srv_cable_title": "Kabelių tiesimas",
+        "srv_cable_text": "Paslėpta ir atvira instaliacija pagal šiuolaikinius saugos standartus. Naudojame pirmaujančių gamintojų kabelius.",
+        "srv_shield_title": "Elektros skydai",
+        "srv_shield_text": "Paskirstymo skydų surinkimas ir montavimas. Automatų, nuotėkio relių, įtampos relių montavimas.",
+        "srv_solar_title": "Saulės panelės",
+        "srv_solar_text": "Fotovoltinių sistemų montavimas ir prijungimas. Atsiperkamumo skaičiavimas ir įrangos parinkimas.",
+        "srv_emergency_title": "Avarinis iškvietimas",
+        "srv_emergency_text": "Gedimų šalinimas 24/7. Atvykimas per 1-2 valandas. Diagnostika ir bet kokio sudėtingumo remontas.",
+
+        // Projects Page
+        "proj_main_title": "Mūsų projektai",
+        "proj_main_subtitle": "Didžiuojamės kiekvienu objektu. Įgyvendinti sprendimai verslui ir namams.",
+        "proj_cat_house": "Gyvenamasis namas",
+        "proj_title_house": "Pilna elektros instaliacija, 280 m²",
+        "proj_meta_house": "Vilnius · 2024 · 18 dienų",
+        "proj_cat_office": "Biuras",
+        "proj_title_office": "Verslo centras, 1200 m²",
+        "proj_meta_office": "Kaunas · 2024 · 35 dienos",
+        "proj_cat_factory": "Gamyba",
+        "proj_title_factory": "Pramonės cechas, 3800 m²",
+        "proj_meta_factory": "Klaipėda · 2023 · 60 dienų",
+
+        // Contact Page
+        "contact_main_title": "Susisiekite su mumis",
+        "contact_addr_title": "Adresas",
+        "contact_addr_text": "Gedimino pr. 15, Vilnius, Lietuva",
+        "contact_phone_title": "Telefonas",
+        "contact_email_title": "El. paštas",
+        "contact_hours_title": "Darbo laikas",
+        "contact_hours_text": "Pr–Pn: 8:00–18:00 · Še: 9:00–14:00",
+        "form_name_label": "Vardas",
+        "form_name_placeholder": "Jūsų vardas",
+        "form_phone_label": "Telefonas",
+        "form_msg_label": "Žinutė",
+        "form_msg_placeholder": "Aprašykite užduotį...",
+        "form_btn_submit": "Siųsti užklausą",
+        "team_title": "Mūsų komanda",
+        "team_1_role": "Vyriausiasis inžinierius",
+        "team_2_role": "Projektų vadovė",
+        "team_3_role": "Montavimo darbų vadovas",
+        "btn_write": "Rašyti",
+
+        // About Page
+        "about_main_title": "Apie Electro Modus",
+        "about_main_subtitle": "Jūsų patikimas partneris elektros pasaulyje nuo 2012 metų.",
+
+        // Auth Pages
+        "auth_login_title": "Prisijungimas",
+        "auth_email_label": "El. paštas",
+        "auth_pass_label": "Slaptažodis",
+        "auth_btn_login": "Prisijungti",
+        "auth_no_account": "Neturite paskyros?",
+        "auth_link_reg": "Registruotis",
+        "auth_reg_title": "Registracija",
+        "auth_btn_reg": "Sukurti paskyrą",
+        "auth_has_account": "Jau turite paskyrą?",
+        "nav_back": "Atgal į pagrindinį",
+
+        // Price Page
+        "price_main_title": "Kainoraštis",
+        "price_main_subtitle": "Skaidrios kainos visiems elektros montavimo darbams.",
+        "price_note": "* Kainos nurodytos už darbą be medžiagų kainos. PVM įskaičiuotas.",
+        "price_col_service": "Paslauga",
+        "price_col_unit": "Vnt.",
+        "price_col_price": "Kaina, €",
+        "unit_mp": "m",
+        "unit_pcs": "vnt.",
+        "unit_obj": "objektas",
+        "unit_set": "kompl.",
+        "unit_proj": "projektas",
+        "unit_h": "val.",
+
+        // T1
+        "p_t1_title": "🔌 Kabelių tiesimas ir instaliacija",
+        "p_t1_1": "Kanalo frezavimas plytose / blokuose",
+        "p_t1_2": "Kanalo frezavimas betone",
+        "p_t1_3": "Kanalo frezavimas gipso kartone",
+        "p_t1_4": "Kabelio tiesimas paviršiumi (atviras)",
+        "p_t1_5": "Kabelio tiesimas gofre / kanale",
+        "p_t1_6": "Kabelio tiesimas frezuotame kanale (paslėptas)",
+        "p_t1_7": "Skylės gręžimas dėžutei (blokas/plyta)",
+        "p_t1_8": "Dėžutės / montažinės dėžutės įrengimas",
+
+        // T2
+        "p_t2_title": "⚡ Elektros taškai (rozetės, jungikliai)",
+        "p_t2_1": "Elektros taško montavimas (rozetė / jungiklis) — juodraštinis",
+        "p_t2_2": "Elektros taško montavimas — švarus (po apdailos)",
+        "p_t2_3": "Pilnas taško montavimas (frezavimas + kabelis + pajungimas)",
+        "p_t2_4": "Paslėpto jungiklio su pajungimu įrengimas",
+        "p_t2_5": "Rozetės elektrinei viryklei (galios) įrengimas",
+        "p_t2_6": "Esamo taško perkėlimas",
+
+        // T3
+        "p_t3_title": "⚙️ Elektros skydai ir apsaugos įranga",
+        "p_t3_1": "Paskirstymo skydo montavimas (iki 12 modulių)",
+        "p_t3_2": "Paskirstymo skydo montavimas (12–36 moduliai)",
+        "p_t3_3": "Skydo surinkimas ir komutavimas (kompleksinis)",
+        "p_t3_4": "Automatinio jungiklio įrengimas",
+        "p_t3_5": "Nuotėkio relės / dif. automato įrengimas",
+        "p_t3_6": "Įtampos kontrolės relės įrengimas",
+        "p_t3_7": "Esamo skydo perkėlimas / rekonstrukcija",
+
+        // T4
+        "p_t4_title": "💡 Apšvietimas",
+        "p_t4_1": "Lubų šviestuvo pajungimas",
+        "p_t4_2": "Įleidžiamo (taškinio) šviestuvo montavimas",
+        "p_t4_3": "Sieninio šviestuvo montavimas",
+        "p_t4_4": "LED juostos montavimas",
+        "p_t4_5": "Šviesos reguliatoriaus (dimerio) įrengimas",
+        "p_t4_6": "Apšvietimo schemos projektavimas",
+
+        // T5
+        "p_t5_title": "📐 Elektros tinklų projektavimas",
+        "p_t5_1": "Buto elektros planas (iki 80 m²)",
+        "p_t5_2": "Namo elektros projektas (80–200 m²)",
+        "p_t5_3": "Pilnas inžinerinis namo projektas (200+ m²)",
+        "p_t5_4": "Komercinio / pramoninio objekto projektas",
+        "p_t5_5": "Izoliacijos varžos matavimas (protokolas)",
+
+        // T6
+        "p_t6_title": "🏠 Išmanieji namai ir automatizacija",
+        "p_t6_1": "Išmaniojo jungiklio (belaidžio) įrengimas",
+        "p_t6_2": "Išmaniojo apšvietimo sistemos nustatymas (iki 10 taškų)",
+        "p_t6_3": "Bazinė automatizacija (šviesa + rozetės, belaidė)",
+        "p_t6_4": "Profesionali sistema (KNX / Loxone) — laidinė",
+        "p_t6_5": "Vaizdo stebėjimo + signalizacijos integracija",
+
+        // T7
+        "p_t7_title": "☀️ Saulės elektrinės",
+        "p_t7_1": "Saulės elektrinė 3 kW",
+        "p_t7_2": "Saulės elektrinė 5 kW",
+        "p_t7_3": "Saulės elektrinė 10 kW",
+        "p_t7_4": "Hibridinis keitiklis + energijos kaupiklis",
+
+        // T8
+        "p_t8_title": "🚨 Avarinis iškvietimas ir diagnostika",
+        "p_t8_1": "Elektriko iškvietimas (darbo laiku Pr–Pn)",
+        "p_t8_2": "Elektriko iškvietimas (vakare / savaitgaliais)",
+        "p_t8_3": "Gedimo diagnostika",
+        "p_t8_4": "Automato / nuotėkio relės keitimas (skubus)",
+
+        // Packages
+        "p_pkg_title": "📦 Kompleksiniai paketai",
+        "p_pkg_1_name": "Butas",
+        "p_pkg_1_area": "iki 80 m²",
+        "p_pkg_1_i1": "Projektavimas",
+        "p_pkg_1_i2": "Frezavimas + tiesimas",
+        "p_pkg_1_i3": "30–50 elektros taškų",
+        "p_pkg_1_i4": "Skydas iki 24 modulių",
+        "p_pkg_2_name": "Privatus namas",
+        "p_pkg_2_area": "100–200 m²",
+        "p_pkg_2_i1": "Pilnas projektas",
+        "p_pkg_2_i2": "60–120 elektros taškų",
+        "p_pkg_2_i3": "Skydas iki 36 modulių",
+        "p_pkg_2_i4": "ESO aktas",
+        "p_pkg_btn": "Apskaičiuoti",
+
+        "p_disc": "⚠️ Visos kainos yra orientacinės ir aktualios 2024–2025 m."
+    },
+    ru: {
+        // Navigation
+        "nav_home": "Главная",
+        "nav_services": "Услуги",
+        "nav_projects": "Проекты",
+        "nav_about": "О нас",
+        "nav_contact": "Контакты",
+        "nav_price": "Прайс-лист",
+        "nav_docs": "Документы",
+        "nav_rekvizitai": "Данные компании",
+        "company_info_title": "Юридическая информация",
+        "company_name_label": "Название",
+        "company_code_label": "Код компании",
+        "company_address_label": "Юридический адрес",
+        "company_founded_label": "Дата регистрации",
+        "company_activity_label": "Сфера деятельности",
+        "company_employees_label": "Кол-во сотрудников",
+        "company_info_descr": "Официальные данные Electro modus, MB согласно государственным реестрам.",
+        "nav_certs": "Сертификаты",
+        "nav_licenses": "Лицензии",
+
+        // Topbar / Shared
+        "company_name": "Electro Modus",
+        "cta_get_calc": "Получить расчёт",
+        "cta_login": "Войти",
+        "cta_dashboard": "Кабинет",
+        "phone_label": "📞 +370 600 00 000",
+        "consult_title": "Нужна консультация?",
+        "consult_text": "Звоните — мы ответим на все вопросы бесплатно.",
+        "btn_call": "Позвонить",
+
+        // Hero
+        "hero_badge": "⚡ Профессиональный электромонтаж",
+        "hero_title": "Энергия вашего успеха<br>в надежных руках",
+        "hero_subtitle": "Проектируем и реализуем сложные электромонтажные решения для бизнеса и частных домов в Литве. Качество, подтвержденное годами.",
+        "hero_btn_consult": "Получить консультацию",
+        "hero_btn_projects": "Наши работы",
+        "hero_stat_exp": "лет опыта",
+        "hero_stat_obj": "объектов",
+        "hero_stat_guar": "гарантия",
+
+        // Services
+        "services_title": "Что мы предлагаем",
+        "services_subtitle": "Полный спектр услуг от замены розетки до автоматизации заводов.",
+        "service_1_title": "Внутренний монтаж",
+        "service_1_text": "Прокладка кабеля, сборка щитов, установка розеток и выключателей.",
+        "service_1_tag": "Популярно",
+        "service_2_title": "Промышленные сети",
+        "service_2_text": "Монтаж оборудования, силовых линий и систем автоматики (АСУ ТП).",
+        "service_3_title": "Умный дом",
+        "service_3_text": "Управление светом, климатом и безопасностью с вашего смартфона.",
+        "service_4_title": "Освещение",
+        "service_4_text": "Проектирование и монтаж фасадного, интерьерного и уличного света.",
+
+        // Why Us
+        "why_title": "Почему выбирают нас",
+        "why_subtitle": "Ваша безопасность — наш главный приоритет.",
+        "feat_1_title": "Квалификация",
+        "feat_1_text": "Все наши мастера имеют государственные аттестаты и допуски к работам любой сложности.",
+        "feat_2_title": "Прозрачность",
+        "feat_2_text": "Составляем детальную смету до начала работ. Цена не меняется в процессе монтажа.",
+        "feat_3_title": "Оборудование",
+        "feat_3_text": "Используем только сертифицированные материалы и профессиональный инструмент (Hilti, Fluke).",
+
+        // Process
+        "proc_title": "Как мы работаем",
+        "proc_1_title": "Заявка",
+        "proc_1_text": "Оставляете заявку или звоните. Обсуждаем задачу.",
+        "proc_2_title": "Замер",
+        "proc_2_text": "Бесплатный выезд инженера для оценки и консультации.",
+        "proc_3_title": "Монтаж",
+        "proc_3_text": "Выполнение работ строго по графику и стандартам безопасности.",
+        "proc_4_title": "Сдача",
+        "proc_4_text": "Проверка системы, подписание акта и передача гарантии.",
+
+        // Testimonials
+        "testim_title": "Отзывы клиентов",
+        "testim_1_text": "Работали по проекту автоматизации склада. Все четко, в срок, щиты собраны идеально. Рекомендую как надежных партнеров.",
+        "testim_1_name": "Андрюс Валатка",
+        "testim_1_role": "Директор логистического центра",
+        "testim_2_text": "Делали проводку в новом доме. Посоветовали как сэкономить на материалах без потери качества. Очень доволен результатом.",
+        "testim_2_name": "Елена Кузнецова",
+        "testim_2_role": "Частный домовладелец",
+
+        // CTA Banner
+        "cta_banner_title": "Готовы начать проект?",
+        "cta_banner_text": "Получите детальный расчет стоимости вашего объекта уже сегодня. Это бесплатно и ни к чему вас не обязывает.",
+        "cta_banner_btn": "Оставить заявку",
+
+        // Footer
+        "footer_rights": "© 2024 Electro Modus. Все права защищены.",
+        "footer_privacy": "Конфиденциальность",
+        "footer_terms": "Условия",
+        "footer_reg": "Рег. № 307068455 · Литва",
+
+        // Services Page
+        "srv_main_title": "Наши услуги",
+        "srv_main_subtitle": "Полный цикл электромонтажных работ — от проекта до сдачи объекта",
+        "srv_cable_title": "Прокладка кабеля",
+        "srv_cable_text": "Скрытая и открытая проводка по современным стандартам безопасности. Используем кабели ведущих производителей.",
+        "srv_shield_title": "Электрощиты",
+        "srv_shield_text": "Сборка и монтаж распределительных щитов. Установка автоматов, УЗО, реле контроля напряжения.",
+        "srv_solar_title": "Солнечные панели",
+        "srv_solar_text": "Монтаж и подключение фотовольтаических систем. Расчёт окупаемости и подбор оборудования.",
+        "srv_emergency_title": "Аварийный выезд",
+        "srv_emergency_text": "Устранение неисправностей 24/7. Выезд в течение 1-2 часов. Диагностика и ремонт любой сложности.",
+
+        // Projects Page
+        "proj_main_title": "Наши проекты",
+        "proj_main_subtitle": "Гордимся каждым объектом. Реализованные решения для бизнеса и дома.",
+        "proj_cat_house": "Жилой дом",
+        "proj_title_house": "Электрика под ключ, 280 м²",
+        "proj_meta_house": "Вильнюс · 2024 · 18 дней",
+        "proj_cat_office": "Офис",
+        "proj_title_office": "Офисный центр, 1200 м²",
+        "proj_meta_office": "Каунас · 2024 · 35 дней",
+        "proj_cat_factory": "Производство",
+        "proj_title_factory": "Промышленный цех, 3800 м²",
+        "proj_meta_factory": "Клайпеда · 2023 · 60 дней",
+
+        // Contact Page
+        "contact_main_title": "Связаться с нами",
+        "contact_addr_title": "Адрес",
+        "contact_addr_text": "ул. Гедимино 15, Вильнюс, Литва",
+        "contact_phone_title": "Телефон",
+        "contact_email_title": "Email",
+        "contact_hours_title": "Режим работы",
+        "contact_hours_text": "Пн–Пт: 8:00–18:00 · Сб: 9:00–14:00",
+        "form_name_label": "Имя",
+        "form_name_placeholder": "Ваше имя",
+        "form_phone_label": "Телефон",
+        "form_msg_label": "Сообщение",
+        "form_msg_placeholder": "Опишите задачу...",
+        "form_btn_submit": "Отправить заявку",
+        "team_title": "Наша команда",
+        "team_1_role": "Главный инженер",
+        "team_2_role": "Менеджер проектов",
+        "team_3_role": "Руководитель монтажных работ",
+        "btn_write": "Написать",
+
+        // About Page
+        "about_main_title": "О компании Electro Modus",
+        "about_main_subtitle": "Ваш надежный партнер в мире электрики с 2012 года.",
+
+        // Auth Pages
+        "auth_login_title": "Вход в кабинет",
+        "auth_email_label": "Email",
+        "auth_pass_label": "Пароль",
+        "auth_btn_login": "Войти",
+        "auth_no_account": "Нет аккаунта?",
+        "auth_link_reg": "Зарегистрируйтесь",
+        "auth_reg_title": "Регистрация",
+        "auth_btn_reg": "Создать аккаунт",
+        "auth_has_account": "Уже есть аккаунт?",
+        "nav_back": "На главную",
+
+        // Price Page
+        "price_main_title": "Прайс-лист",
+        "price_main_subtitle": "Прозрачные цены на все виды электромонтажных работ.",
+        "price_note": "* Цены указаны за работу без стоимости материалов. НДС включён.",
+        "price_col_service": "Услуга",
+        "price_col_unit": "Ед. изм.",
+        "price_col_price": "Цена, €",
+        "unit_mp": "м.п.",
+        "unit_pcs": "шт.",
+        "unit_obj": "объект",
+        "unit_set": "комплект",
+        "unit_proj": "проект",
+        "unit_h": "час",
+
+        // T1
+        "p_t1_title": "🔌 Прокладка кабеля и монтаж проводки",
+        "p_t1_1": "Штробление канала в кирпиче / блоках",
+        "p_t1_2": "Штробление канала в бетоне",
+        "p_t1_3": "Штробление канала в гипсокартоне",
+        "p_t1_4": "Прокладка кабеля по поверхности (открытая)",
+        "p_t1_5": "Прокладка кабеля в гофре / кабель-канале",
+        "p_t1_6": "Прокладка кабеля в штробе (скрытая)",
+        "p_t1_7": "Высверливание отверстия под подрозетник (блок/кирпич)",
+        "p_t1_8": "Установка подрозетника / монтажной коробки",
+
+        // T2
+        "p_t2_title": "⚡ Электрические точки (розетки, выключатели)",
+        "p_t2_1": "Монтаж электрической точки (розетка / выключатель) — черновой",
+        "p_t2_2": "Монтаж электрической точки — чистовой (после отделки)",
+        "p_t2_3": "Полный монтаж точки «под ключ» (штроба + кабель + подключение)",
+        "p_t2_4": "Установка скрытого выключателя с подключением",
+        "p_t2_5": "Установка розетки для электроплиты (силовая)",
+        "p_t2_6": "Перенос существующей точки",
+
+        // T3
+        "p_t3_title": "⚙️ Электрощиты и защитное оборудование",
+        "p_t3_1": "Монтаж распределительного щита (до 12 модулей)",
+        "p_t3_2": "Монтаж распределительного щита (12–36 модулей)",
+        "p_t3_3": "Сборка и коммутация щита (комплексная)",
+        "p_t3_4": "Установка автоматического выключателя",
+        "p_t3_5": "Установка УЗО / дифавтомата",
+        "p_t3_6": "Установка реле контроля напряжения",
+        "p_t3_7": "Перенос / реконструкция существующего щита",
+
+        // T4
+        "p_t4_title": "💡 Освещение",
+        "p_t4_1": "Подключение потолочного светильника",
+        "p_t4_2": "Монтаж встраиваемого (точечного) светильника",
+        "p_t4_3": "Монтаж настенного светильника (бра)",
+        "p_t4_4": "Монтаж LED-ленты",
+        "p_t4_5": "Установка диммера (регулятора яркости)",
+        "p_t4_6": "Проектирование схемы освещения",
+
+        // T5
+        "p_t5_title": "📐 Проектирование электросетей",
+        "p_t5_1": "Электрический план квартиры (до 80 м²)",
+        "p_t5_2": "Электрический проект дома (80–200 м²)",
+        "p_t5_3": "Полный инженерный проект дома (200+ м²)",
+        "p_t5_4": "Проект коммерческого / промышленного объекта",
+        "p_t5_5": "Замер сопротивления изоляции (протокол)",
+
+        // T6
+        "p_t6_title": "🏠 Умный дом и автоматизация",
+        "p_t6_1": "Установка умного выключателя (беспроводной)",
+        "p_t6_2": "Настройка системы умного освещения (до 10 точек)",
+        "p_t6_3": "Базовая автоматизация (свет + розетки, беспроводная)",
+        "p_t6_4": "Профессиональная система (KNX / Loxone) — проводная",
+        "p_t6_5": "Интеграция видеонаблюдения + сигнализации",
+
+        // T7
+        "p_t7_title": "☀️ Солнечные электростанции",
+        "p_t7_1": "Солнечная электростанция 3 кВт",
+        "p_t7_2": "Солнечная электростанция 5 кВт",
+        "p_t7_3": "Солнечная электростанция 10 кВт",
+        "p_t7_4": "Гибридный инвертер + накопитель энергии",
+
+        // T8
+        "p_t8_title": "🚨 Аварийный выезд и диагностика",
+        "p_t8_1": "Выезд электрика (рабочее время Пн–Пт)",
+        "p_t8_2": "Выезд электрика (вечер / выходные)",
+        "p_t8_3": "Диагностика неисправности",
+        "p_t8_4": "Замена автомата / УЗО (срочная)",
+
+        // Packages
+        "p_pkg_title": "📦 Комплексные пакеты «под ключ»",
+        "p_pkg_1_name": "Квартира",
+        "p_pkg_1_area": "до 80 м²",
+        "p_pkg_1_i1": "Проектирование",
+        "p_pkg_1_i2": "Штробление + прокладка",
+        "p_pkg_1_i3": "30–50 электроточек",
+        "p_pkg_1_i4": "Щит до 24 модулей",
+        "p_pkg_2_name": "Частный дом",
+        "p_pkg_2_area": "100–200 м²",
+        "p_pkg_2_i1": "Полный проект",
+        "p_pkg_2_i2": "60–120 электроточек",
+        "p_pkg_2_i3": "Щит до 36 модулей",
+        "p_pkg_2_i4": "Акт ESO",
+        "p_pkg_btn": "Рассчитать",
+
+        "p_disc": "⚠️ Все цены являются ориентировочными и актуальны на 2024–2025 гг."
+    }
+};

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="lt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-t="nav_services">Paslaugos — Electro Modus</title>
+    <meta name="description" content="Полный спектр электромонтажных услуг в Литве.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src="./scripts/translations.js" defer></script>
+    <script src="./scripts/i18n.js" defer></script>
+    <script src="./scripts/main.js" defer></script>
+    <script src="./scripts/auth.js" defer></script>
+</head>
+
+<body>
+    <!-- TOP HEADER BAR -->
+    <header class="topbar">
+        <a href="index.html" class="topbar__brand">
+            <div class="topbar__icon">⚡</div>
+            <span class="topbar__name"><span data-t="company_name">Electro Modus</span></span>
+        </a>
+        <div class="topbar__contact">
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="lt">LT</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
+            <span class="topbar__phone" data-t="phone_label">📞 +370 600 00 000</span>
+            <a href="contact.html" class="topbar__cta" data-t="cta_get_calc">Gauti pasiūlymą</a>
+        </div>
+    </header>
+
+    <div class="layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <nav class="sidebar__nav">
+                <p class="sidebar__section-label" data-t="nav_home">Navigacija</p>
+                <ul class="sidebar__menu">
+                    <li><a href="index.html" class="sidebar__link">
+                        <span class="sidebar__link-icon">🏠</span> <span data-t="nav_home">Pagrindinis</span>
+                    </a></li>
+                    <li><a href="services.html" class="sidebar__link active">
+                        <span class="sidebar__link-icon">⚡</span> <span data-t="nav_services">Paslaugos</span>
+                    </a></li>
+                    <li><a href="projects.html" class="sidebar__link">
+                        <span class="sidebar__link-icon">🏗️</span> <span data-t="nav_projects">Projektai</span>
+                    </a></li>
+                    <li><a href="about.html" class="sidebar__link">
+                        <span class="sidebar__link-icon">ℹ️</span> <span data-t="nav_about">Apie mus</span>
+                    </a></li>
+                    <li><a href="contact.html" class="sidebar__link">
+                        <span class="sidebar__link-icon">✉️</span> <span data-t="nav_contact">Kontaktai</span>
+                    </a></li>
+                </ul>
+
+                <p class="sidebar__section-label" data-t="nav_docs">Dokumentai</p>
+                <ul class="sidebar__menu">
+                    <li><a href="price.html" class="sidebar__link sidebar__link--sub" data-t="nav_price">Kainoraštis</a></li>
+                    <li><a href="company-info.html" class="sidebar__link sidebar__link--sub" data-t="nav_rekvizitai">Įmonės duomenys</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar__info-card">
+                <p class="sidebar__info-title" data-t="consult_title">Reikia konsultacijos?</p>
+                <p class="sidebar__info-text" data-t="consult_text">Skambinkite — atsakysime į visus klausimus nemokamai.</p>
+                <a href="tel:+37060000000" class="sidebar__info-btn" data-t="btn_call">Skambinti</a>
+            </div>
+        </aside>
+
+        <!-- CONTENT AREA -->
+        <main class="content">
+            <section class="section">
+                <h2 class="section__title" data-t="srv_main_title">Mūsų paslaugos</h2>
+                <p class="section__subtitle" data-t="srv_main_subtitle">Pilnas elektros montavimo darbų ciklas — nuo projekto iki pridavimo</p>
+                <div class="cards">
+                    <div class="card">
+                        <div class="card__icon">🔌</div>
+                        <h3 class="card__title" data-t="srv_cable_title">Kabelių tiesimas</h3>
+                        <p class="card__text" data-t="srv_cable_text">Paslėpta ir atvira instaliacija pagal šiuolaikinius saugos standartus.</p>
+                        <span class="card__tag">nuo 8 €/m</span>
+                    </div>
+                    <div class="card">
+                        <div class="card__icon">⚙️</div>
+                        <h3 class="card__title" data-t="srv_shield_title">Elektros skydai</h3>
+                        <p class="card__text" data-t="srv_shield_text">Paskirstymo skydų surinkimas ir montavimas.</p>
+                        <span class="card__tag">nuo 150 €</span>
+                    </div>
+                    <div class="card">
+                        <div class="card__icon">💡</div>
+                        <h3 class="card__title" data-t="service_4_title">Apšvietimas</h3>
+                        <p class="card__text" data-t="service_4_text">Fasado, interjero ir lauko apšvietimo sprendimai.</p>
+                        <span class="card__tag">nuo 25 €/taškas</span>
+                    </div>
+                    <div class="card">
+                        <div class="card__icon">🏠</div>
+                        <h3 class="card__title" data-t="service_3_title">Išmanieji namai</h3>
+                        <p class="card__text" data-t="service_3_text">Sistemų automatizavimas ir valdymas telefonu.</p>
+                        <span class="card__tag">nuo 500 €</span>
+                    </div>
+                    <div class="card">
+                        <div class="card__icon">☀️</div>
+                        <h3 class="card__title" data-t="srv_solar_title">Saulės panelės</h3>
+                        <p class="card__text" data-t="srv_solar_text">Fotovoltinių sistemų montavimas ir prijungimas.</p>
+                        <span class="card__tag">Pagal užsakymą</span>
+                    </div>
+                    <div class="card">
+                        <div class="card__icon">🚨</div>
+                        <h3 class="card__title" data-t="srv_emergency_title">Avarinis iškvietimas</h3>
+                        <p class="card__text" data-t="srv_emergency_text">Gedimų šalinimas 24/7. Atvykimas per 1-2 valandas.</p>
+                        <span class="card__tag">24/7</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <span class="footer__brand">⚡ <span data-t="company_name">Electro Modus</span></span>
+            <span class="footer__sep">·</span>
+            <span class="footer__copy" data-t="footer_rights">© 2024 Electro Modus. Visos teisės saugomos.</span>
+            <span class="footer__sep">·</span>
+            <a href="#" class="footer__link" data-t="footer_privacy">Privatumas</a>
+            <span class="footer__sep">·</span>
+            <a href="#" class="footer__link" data-t="footer_terms">Sąlygos</a>
+            <span class="footer__sep">·</span>
+            <span class="footer__reg" data-t="footer_reg">Reg. Nr. 302000001 · Lietuva</span>
+        </div>
+    </footer>
+</body>
+
+</html>

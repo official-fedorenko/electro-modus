@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="lt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-t="company_name">Electro Modus — Профессиональный электромонтаж в Литве</title>
+    <meta name="description"
+        content="Профессиональные услуги электромонтажа. Жилые и коммерческие объекты. Быстро, надёжно, безопасно.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src="./scripts/translations.js" defer></script>
+    <script src="./scripts/i18n.js" defer></script>
+    <script src="./scripts/main.js" defer></script>
+    <script src="./scripts/auth.js" defer></script>
+</head>
+
+<body>
+    <!-- TOP HEADER BAR -->
+    <header class="topbar">
+        <a href="index.html" class="topbar__brand">
+            <div class="topbar__icon">⚡</div>
+            <span class="topbar__name"><span data-t="company_name">Electro Modus</span></span>
+        </a>
+        <div class="topbar__contact">
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="lt">LT</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
+            <span class="topbar__phone" data-t="phone_label">📞 +370 600 00 000</span>
+            <a href="login.html" class="topbar__cta" id="auth-btn-top"
+                style="background: transparent; color: var(--accent); border: 1px solid var(--accent); margin-right: 10px;"
+                data-t="cta_login">Войти</a>
+            <a href="contact.html" class="topbar__cta" data-t="cta_get_calc">Получить расчёт</a>
+        </div>
+    </header>
+
+    <div class="layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <nav class="sidebar__nav">
+                <p class="sidebar__section-label" data-t="nav_home">Навигация</p>
+                <ul class="sidebar__menu">
+                    <li><a href="index.html" class="sidebar__link active">
+                            <span class="sidebar__link-icon">🏠</span> <span data-t="nav_home">Главная</span>
+                        </a></li>
+                    <li><a href="services.html" class="sidebar__link">
+                            <span class="sidebar__link-icon">⚡</span> <span data-t="nav_services">Услуги</span>
+                        </a></li>
+                    <li><a href="projects.html" class="sidebar__link">
+                            <span class="sidebar__link-icon">🏗️</span> <span data-t="nav_projects">Проекты</span>
+                        </a></li>
+                    <li><a href="about.html" class="sidebar__link">
+                            <span class="sidebar__link-icon">ℹ️</span> <span data-t="nav_about">О нас</span>
+                        </a></li>
+                    <li><a href="contact.html" class="sidebar__link">
+                            <span class="sidebar__link-icon">✉️</span> <span data-t="nav_contact">Контакты</span>
+                        </a></li>
+                </ul>
+
+                <p class="sidebar__section-label" data-t="nav_docs">Dokumentai</p>
+                <ul class="sidebar__menu">
+                    <li><a href="price.html" class="sidebar__link sidebar__link--sub" data-t="nav_price">Kainoraštis</a></li>
+                    <li><a href="company-info.html" class="sidebar__link sidebar__link--sub" data-t="nav_rekvizitai">Įmonės duomenys</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar__info-card">
+                <p class="sidebar__info-title" data-t="consult_title">Нужна консультация?</p>
+                <p class="sidebar__info-text" data-t="consult_text">Звоните — мы ответим на все вопросы бесплатно.</p>
+                <a href="tel:+37060000000" class="sidebar__info-btn" data-t="btn_call">Позвонить</a>
+            </div>
+        </aside>
+
+        <!-- CONTENT AREA -->
+        <main class="content">
+            <!-- HERO -->
+            <section class="hero">
+                <div class="hero__badge" data-t="hero_badge">⚡ Profesionalus elektros montavimas</div>
+                <h1 class="hero__title" data-t="hero_title">Jūsų sėkmės energija<br>patikimose rankose</h1>
+                <p class="hero__subtitle" data-t="hero_subtitle">Projektuojame ir įgyvendiname sudėtingus elektros
+                    montavimo sprendimus verslui ir privatiems namams Lietuvoje. Kokybė, patikrinta metais.</p>
+                <div class="hero__actions">
+                    <a href="contact.html" class="btn btn--primary" data-t="hero_btn_consult">Gauti konsultaciją</a>
+                    <a href="projects.html" class="btn btn--ghost" data-t="hero_btn_projects">Mūsų darbai</a>
+                </div>
+                <div class="hero__stats">
+                    <div class="hero__stat">
+                        <span class="hero__stat-num">12+</span>
+                        <span class="hero__stat-label" data-t="hero_stat_exp">metų patirtis</span>
+                    </div>
+                    <div class="hero__stat">
+                        <span class="hero__stat-num">850+</span>
+                        <span class="hero__stat-label" data-t="hero_stat_obj">objektų</span>
+                    </div>
+                    <div class="hero__stat">
+                        <span class="hero__stat-num">5 metai</span>
+                        <span class="hero__stat-label" data-t="hero_stat_guar">garantija</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SERVICES -->
+            <section class="section">
+                <h2 class="section__title" data-t="services_title">Ką mes siūlome</h2>
+                <p class="section__subtitle" data-t="services_subtitle">Platus paslaugų spektras nuo rozetės pakeitimo
+                    iki gamyklų automatizavimo.</p>
+                <div class="cards">
+                    <div class="card">
+                        <div class="card__icon">🔌</div>
+                        <h3 class="card__title" data-t="service_1_title">Vidaus montavimas</h3>
+                        <p class="card__text" data-t="service_1_text">Kabelių tiesimas, skydų surinkimas, rozečių ir
+                            jungiklių montavimas.</p>
+                        <span class="card__tag" data-t="service_1_tag">Populiaru</span>
+                    </div>
+                    <div class="card">
+                        <div class="card__icon">🏗️</div>
+                        <h3 class="card__title" data-t="service_2_title">Pramoniniai tinklai</h3>
+                        <p class="card__text" data-t="service_2_text">Įrangos, maitinimo linijų ir automatikos sistemų
+                            (AKTS) montavimas.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card__icon">🏠</div>
+                        <h3 class="card__title" data-t="service_3_title">Išmanieji namai</h3>
+                        <p class="card__text" data-t="service_3_text">Šviesos, klimato ir saugumo valdymas iš jūsų
+                            išmaniojo telefono.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card__icon">💡</div>
+                        <h3 class="card__title" data-t="service_4_title">Apšvietimas</h3>
+                        <p class="card__text" data-t="service_4_text">Fasado, interjero ir lauko apšvietimo
+                            projektavimas ir montavimas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- WHY US -->
+            <section class="section section--alt">
+                <h2 class="section__title" data-t="why_title">Kodėl renkasi mus</h2>
+                <p class="section__subtitle" data-t="why_subtitle">Jūsų saugumas — mūsų pagrindinis prioritetas.</p>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature__num">01</div>
+                        <h3 class="feature__title" data-t="feat_1_title">Kvalifikacija</h3>
+                        <p class="feature__text" data-t="feat_1_text">Visi mūsų meistrai turi valstybinius atestatus ir
+                            leidimus bet kokio sudėtingumo darbams.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature__num">02</div>
+                        <h3 class="feature__title" data-t="feat_2_title">Прозрачность</h3>
+                        <p class="feature__text" data-t="feat_2_text">Составляем детальную смету до начала работ. Цена
+                            не меняется в процессе монтажа.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature__num">03</div>
+                        <h3 class="feature__title" data-t="feat_3_title">Оборудование</h3>
+                        <p class="feature__text" data-t="feat_3_text">Используем только сертифицированные материалы и
+                            профессиональный инструмент.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROCESS -->
+            <section class="section">
+                <h2 class="section__title" data-t="proc_title">Kaip mes dirbame</h2>
+                <div class="process">
+                    <div class="process-step">
+                        <div class="process-step__num">1</div>
+                        <h3 class="process-step__title" data-t="proc_1_title">Užklausa</h3>
+                        <p class="process-step__text" data-t="proc_1_text">Palikite užklausą arba skambinkite. Aptariame
+                            užduotį.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-step__num">2</div>
+                        <h3 class="process-step__title" data-t="proc_2_title">Matavimas</h3>
+                        <p class="process-step__text" data-t="proc_2_text">Nemokamas inžinieriaus išvykimas įvertinimui
+                            ir konsultacijai.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-step__num">3</div>
+                        <h3 class="process-step__title" data-t="proc_3_title">Montavimas</h3>
+                        <p class="process-step__text" data-t="proc_3_text">Darbų atlikimas griežtai pagal grafiką ir
+                            saugos standartus.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-step__num">4</div>
+                        <h3 class="process-step__title" data-t="proc_4_title">Pridavimas</h3>
+                        <p class="process-step__text" data-t="proc_4_text">Sistemos patikra, akto pasirašymas ir
+                            garantijos perdavimas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TESTIMONIALS -->
+            <section class="section section--alt">
+                <h2 class="section__title" data-t="testim_title">Klientų atsiliepimai</h2>
+                <div class="testimonials">
+                    <div class="testimonial">
+                        <p class="testimonial__text" data-t="testim_1_text">Dirbome prie sandėlio automatizavimo
+                            projekto. Viskas aišku, laiku, skydai surinkti idealiai. Rekomenduoju kaip patikimus
+                            partnerius.</p>
+                        <div class="testimonial__author">
+                            <div class="testimonial__avatar">AV</div>
+                            <div>
+                                <p class="testimonial__name" data-t="testim_1_name">Andrius Valatka</p>
+                                <p class="testimonial__meta" data-t="testim_1_role">Logistikos centro direktorius</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <p class="testimonial__text" data-t="testim_2_text">Įvedinėjo instaliaciją naujame name. Patarė
+                            kaip sutaupyti medžiagoms neprarandant kokybės. Labai patenkinta rezultatu.</p>
+                        <div class="testimonial__author">
+                            <div class="testimonial__avatar">JK</div>
+                            <div>
+                                <p class="testimonial__name" data-t="testim_2_name">Jelena Kuznecova</p>
+                                <p class="testimonial__meta" data-t="testim_2_role">Privati namo savininkė</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA BANNER -->
+            <section class="section">
+                <div class="cta-banner">
+                    <h2 class="cta-banner__title" data-t="cta_banner_title">Pasiruošę pradėti projektą?</h2>
+                    <p class="cta-banner__text" data-t="cta_banner_text">Gaukite išsamų jūsų objekto sąmatos skaičiavimą
+                        jau šiandien. Tai nemokama ir niekuo neįpareigoja.</p>
+                    <a href="contact.html" class="btn btn--primary" data-t="cta_banner_btn">Palikti užklausą</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <span class="footer__brand">⚡ <span data-t="company_name">Electro Modus</span></span>
+            <span class="footer__sep">·</span>
+            <span class="footer__copy" data-t="footer_rights">© 2024 Electro Modus. Все права защищены.</span>
+            <span class="footer__sep">·</span>
+            <a href="#" class="footer__link" data-t="footer_privacy">Конфиденциальность</a>
+            <span class="footer__sep">·</span>
+            <a href="#" class="footer__link" data-t="footer_terms">Условия</a>
+            <span class="footer__sep">·</span>
+            <span class="footer__reg" data-t="footer_reg">Рег. № 302000001 · Литва</span>
+        </div>
+    </footer>
+</body>
+
+</html>

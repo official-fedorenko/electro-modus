@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление ценами — Electro Modus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src="./scripts/admin-prices.js" defer></script>
+    <style>
+        .admin-container { max-width: 1200px; margin: 20px auto; padding: 20px; background: var(--bg-surface); border-radius: 8px; border: 1px solid var(--border); }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .price-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; background: var(--bg-raised); padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--border); }
+        .price-form input, .price-form select { padding: 8px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg-surface); color: var(--text-primary); }
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+        .admin-table th, .admin-table td { padding: 10px; text-align: left; border-bottom: 1px solid var(--border); }
+        .admin-table th { background: var(--bg-raised); color: var(--text-secondary); }
+        .btn-sm { padding: 4px 8px; font-size: 12px; }
+        .lang-toggle { display: flex; gap: 5px; margin-bottom: 10px; }
+        .lang-toggle button { padding: 4px 10px; border: 1px solid var(--border); background: var(--bg-raised); cursor: pointer; color: var(--text-secondary); }
+        .lang-toggle button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <a href="index.html" class="topbar__brand">
+            <div class="topbar__icon">⚡</div>
+            <span class="topbar__name">Electro Modus <span style="color:var(--accent)">[PRICES]</span></span>
+        </a>
+        <div class="topbar__contact">
+            <a href="dashboard.html" class="topbar__cta" style="background: transparent; color: var(--accent); border: 1px solid var(--accent); margin-right: 10px;">В кабинет</a>
+            <a href="index.html" class="topbar__cta">На главную</a>
+        </div>
+    </header>
+
+    <div class="layout" style="display: block; overflow-y: auto; height: calc(100vh - var(--topbar-h)); padding-top: 20px;">
+        <main class="content" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div class="admin-container">
+                <div class="admin-header">
+                    <h2>Управление прайс-листом</h2>
+                    <button id="btn-refresh" class="btn btn--ghost">Обновить</button>
+                </div>
+
+                <div id="price-msg" style="color: green; margin-bottom: 10px;"></div>
+                <div id="price-error" style="color: red; margin-bottom: 10px;"></div>
+
+                <div class="price-form" id="add-price-form">
+                    <input type="text" id="f-cat-lt" placeholder="Категория (LT)" required>
+                    <input type="text" id="f-cat-ru" placeholder="Категория (RU)" required>
+                    <input type="text" id="f-name-lt" placeholder="Услуга (LT)" required>
+                    <input type="text" id="f-name-ru" placeholder="Услуга (RU)" required>
+                    <input type="text" id="f-unit-lt" placeholder="Ед. (LT)" value="vnt.">
+                    <input type="text" id="f-unit-ru" placeholder="Ед. (RU)" value="шт.">
+                    <input type="text" id="f-price" placeholder="Цена (текст, напр. 5-10)" required>
+                    <button type="submit" class="btn btn--primary" id="btn-add-price">Добавить</button>
+                </div>
+
+                <div class="lang-toggle" id="table-lang-toggle">
+                    <span>Просмотр:</span>
+                    <button data-lang="lt" class="active">LT</button>
+                    <button data-lang="ru">RU</button>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Категория</th>
+                                <th>Услуга</th>
+                                <th>Ед.изм.</th>
+                                <th>Цена, €</th>
+                                <th>Действие</th>
+                            </tr>
+                        </thead>
+                        <tbody id="prices-tbody">
+                            <tr><td colspan="6">Загрузка...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

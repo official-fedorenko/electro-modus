@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="lt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-t="nav_about">Apie mus — Electro Modus</title>
+    <meta name="description" content="О компании ЭлектроМонтаж Pro — опыт, гарантии, качество.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src="./scripts/translations.js" defer></script>
+    <script src="./scripts/i18n.js" defer></script>
+    <script src="./scripts/main.js" defer></script>
+    <script src="./scripts/auth.js" defer></script>
+</head>
+
+<body>
+    <!-- TOP HEADER BAR -->
+    <header class="topbar">
+        <a href="index.html" class="topbar__brand">
+            <div class="topbar__icon">⚡</div>
+            <span class="topbar__name"><span data-t="company_name">Electro Modus</span></span>
+        </a>
+        <div class="topbar__contact">
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="lt">LT</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
+            <span class="topbar__phone" data-t="phone_label">📞 +370 600 00 000</span>
+            <a href="contact.html" class="topbar__cta" data-t="cta_get_calc">Gauti pasiūlymą</a>
+        </div>
+    </header>
+
+    <div class="layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <nav class="sidebar__nav">
+                <p class="sidebar__section-label" data-t="nav_home">Navigacija</p>
+                <ul class="sidebar__menu">
+                    <li><a href="index.html" class="sidebar__link">
+                        <span class="sidebar__link-icon">🏠</span> <span data-t="nav_home">Pagrindinis</span>
+                    </a></li>
+                    <li><a href="services.html" class="sidebar__link">
+                        <span class="sidebar__link-icon">⚡</span> <span data-t="nav_services">Paslaugos</span>
+                    </a></li>
+                    <li><a href="projects.html" class="sidebar__link">
+                        <span class="sidebar__link-icon">🏗️</span> <span data-t="nav_projects">Projektai</span>
+                    </a></li>
+                    <li><a href="about.html" class="sidebar__link active">
+                        <span class="sidebar__link-icon">ℹ️</span> <span data-t="nav_about">Apie mus</span>
+                    </a></li>
+                    <li><a href="contact.html" class="sidebar__link">
+                        <span class="sidebar__link-icon">✉️</span> <span data-t="nav_contact">Kontaktai</span>
+                    </a></li>
+                </ul>
+
+                <p class="sidebar__section-label" data-t="nav_docs">Dokumentai</p>
+                <ul class="sidebar__menu">
+                    <li><a href="price.html" class="sidebar__link sidebar__link--sub" data-t="nav_price">Kainoraštis</a></li>
+                    <li><a href="company-info.html" class="sidebar__link sidebar__link--sub" data-t="nav_rekvizitai">Įmonės duomenys</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar__info-card">
+                <p class="sidebar__info-title" data-t="consult_title">Reikia konsultacijos?</p>
+                <p class="sidebar__info-text" data-t="consult_text">Skambinkite — atsakysime į visus klausimus nemokamai.</p>
+                <a href="tel:+37060000000" class="sidebar__info-btn" data-t="btn_call">Skambinti</a>
+            </div>
+        </aside>
+
+        <!-- CONTENT AREA -->
+        <main class="content">
+            <section class="section">
+                <h2 class="section__title" data-t="about_main_title">Apie Electro Modus</h2>
+                <p class="section__subtitle" data-t="about_main_subtitle">Jūsų patikimas partneris elektros pasaulyje nuo 2012 metų.</p>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature__num">01</div>
+                        <h3 class="feature__title" data-t="feat_1_title">Kvalifikacija</h3>
+                        <p class="feature__text" data-t="feat_1_text">Visi mūsų meistrai turi valstybinius atestatus ir leidimus bet kokio sudėtingumo darbams.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature__num">02</div>
+                        <h3 class="feature__title">Garantija 3 metai</h3>
+                        <p class="feature__text">Suteikiame rašytinę garantiją visiems darbams. Nemokamas bet kokių defektų šalinimas garantiniu laikotarpiu.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature__num">03</div>
+                        <h3 class="feature__title" data-t="feat_2_title">Skaidrumas</h3>
+                        <p class="feature__text" data-t="feat_2_text">Sudarome išsamią sąmatą prieš pradedant darbus. Kaina montavimo metu nesikeičia.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature__num">04</div>
+                        <h3 class="feature__title">Terminų laikymasis</h3>
+                        <p class="feature__text">Pristatome objektus laiku. Vėlavimo atveju dėl mūsų kaltės – kompensacija 1% nuo sumos už kiekvieną dieną.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <span class="footer__brand">⚡ <span data-t="company_name">Electro Modus</span></span>
+            <span class="footer__sep">·</span>
+            <span class="footer__copy" data-t="footer_rights">© 2024 Electro Modus. Visos teisės saugomos.</span>
+            <span class="footer__sep">·</span>
+            <a href="#" class="footer__link" data-t="footer_privacy">Privatumas</a>
+            <span class="footer__sep">·</span>
+            <a href="#" class="footer__link" data-t="footer_terms">Sąlygos</a>
+            <span class="footer__sep">·</span>
+            <span class="footer__reg" data-t="footer_reg">Reg. Nr. 302000001 · Lietuva</span>
+        </div>
+    </footer>
+</body>
+
+</html>

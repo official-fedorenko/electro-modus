@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-t="company_name">Electro Modus — Профессиональный электромонтаж в Литве</title>
+    <meta name="description" content="Свяжитесь с нами для заказа электромонтажных работ в Литве.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src="./scripts/translations.js" defer></script>
+    <script src="./scripts/i18n.js" defer></script>
+    <script src="./scripts/main.js" defer></script>
+    <script src="./scripts/auth.js" defer></script>
+</head>
+
+<body>
+    <!-- TOP HEADER BAR -->
+    <header class="topbar">
+        <a href="index.html" class="topbar__brand">
+            <div class="topbar__icon">⚡</div>
+            <span class="topbar__name"><span data-t="company_name">Electro Modus</span></span>
+        </a>
+        <div class="topbar__contact">
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="lt">LT</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
+            <span class="topbar__phone" data-t="phone_label">📞 +370 600 00 000</span>
+            <a href="contact.html" class="topbar__cta" data-t="cta_get_calc">Получить расчёт</a>
+        </div>
+    </header>
+
+    <div class="layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <nav class="sidebar__nav">
+                <p class="sidebar__section-label" data-t="nav_home">Навигация</p>
+                <ul class="sidebar__menu">
+                    <li><a href="index.html" class="sidebar__link">
+                        <span class="sidebar__link-icon">🏠</span> <span data-t="nav_home">Главная</span>
+                    </a></li>
+                    <li><a href="services.html" class="sidebar__link">
+                        <span class="sidebar__link-icon">⚡</span> <span data-t="nav_services">Услуги</span>
+                    </a></li>
+                    <li><a href="projects.html" class="sidebar__link">
+                        <span class="sidebar__link-icon">🏗️</span> <span data-t="nav_projects">Проекты</span>
+                    </a></li>
+                    <li><a href="about.html" class="sidebar__link">
+                        <span class="sidebar__link-icon">ℹ️</span> <span data-t="nav_about">О нас</span>
+                    </a></li>
+                    <li><a href="contact.html" class="sidebar__link active">
+                        <span class="sidebar__link-icon">✉️</span> <span data-t="nav_contact">Контакты</span>
+                    </a></li>
+                </ul>
+
+                <p class="sidebar__section-label" data-t="nav_docs">Dokumentai</p>
+                <ul class="sidebar__menu">
+                    <li><a href="price.html" class="sidebar__link sidebar__link--sub" data-t="nav_price">Kainoraštis</a></li>
+                    <li><a href="company-info.html" class="sidebar__link sidebar__link--sub" data-t="nav_rekvizitai">Įmonės duomenys</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar__info-card">
+                <p class="sidebar__info-title" data-t="consult_title">Нужна консультация?</p>
+                <p class="sidebar__info-text" data-t="consult_text">Звоните — мы ответим на все вопросы бесплатно.</p>
+                <a href="tel:+37060000000" class="sidebar__info-btn" data-t="btn_call">Позвонить</a>
+            </div>
+        </aside>
+
+        <!-- CONTENT AREA -->
+        <main class="content">
+            <!-- TEAM SECTION -->
+            <section class="section">
+                <h2 class="section__title" data-t="team_title">Mūsų komanda</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-card__header">
+                            <div class="team-card__avatar">ŠK</div>
+                            <div>
+                                <h3 class="team-card__name">Šarūnas Katinas</h3>
+                                <p class="team-card__role" data-t="team_1_role">Vyriausiasis inžinierius</p>
+                            </div>
+                        </div>
+                        <div class="team-card__contacts">
+                            <a href="tel:+37060000001" class="btn btn--ghost team-card__btn"><span data-t="btn_call">Skambinti</span></a>
+                            <a href="https://t.me/sharunas" target="_blank" class="btn btn--ghost team-card__btn">Telegram</a>
+                            <a href="https://wa.me/37060000001" target="_blank" class="btn btn--ghost team-card__btn">WhatsApp</a>
+                            <a href="viber://chat?number=%2B37060000001" class="btn btn--ghost team-card__btn">Viber</a>
+                            <a href="mailto:ceo@elektromontaz.lt" class="btn btn--ghost team-card__btn" style="grid-column: span 2;" data-t="btn_write">Rašyti</a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-card__header">
+                            <div class="team-card__avatar">RF</div>
+                            <div>
+                                <h3 class="team-card__name">Romanas Fedorenko</h3>
+                                <p class="team-card__role" data-t="team_3_role">Montavimo darbų vadovas</p>
+                            </div>
+                        </div>
+                        <div class="team-card__contacts">
+                            <a href="tel:+37060000002" class="btn btn--ghost team-card__btn"><span data-t="btn_call">Skambinti</span></a>
+                            <a href="https://t.me/roman" target="_blank" class="btn btn--ghost team-card__btn">Telegram</a>
+                            <a href="https://wa.me/37060000002" target="_blank" class="btn btn--ghost team-card__btn">WhatsApp</a>
+                            <a href="viber://chat?number=%2B37060000002" class="btn btn--ghost team-card__btn">Viber</a>
+                            <a href="mailto:tech@elektromontaz.lt" class="btn btn--ghost team-card__btn" style="grid-column: span 2;" data-t="btn_write">Rašyti</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section section--alt">
+                <h2 class="section__title" data-t="contact_main_title">Susisiekite su mumis</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-item__icon">📍</span>
+                            <div>
+                                <strong data-t="contact_addr_title">Adresas</strong>
+                                <p data-t="contact_addr_text">Gedimino pr. 15, Vilnius, Lietuva</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-item__icon">📞</span>
+                            <div>
+                                <strong data-t="contact_phone_title">Telefonas</strong>
+                                <p>+370 600 00 000</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-item__icon">✉️</span>
+                            <div>
+                                <strong data-t="contact_email_title">El. paštas</strong>
+                                <p>info@elektromontaz.lt</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-item__icon">🕐</span>
+                            <div>
+                                <strong data-t="contact_hours_title">Darbo laikas</strong>
+                                <p data-t="contact_hours_text">Pr–Pn: 8:00–18:00 · Še: 9:00–14:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label class="form-label" for="form-name" data-t="form_name_label">Vardas</label>
+                            <input type="text" id="form-name" class="form-input" placeholder="Jūsų vardas" data-t="form_name_placeholder">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="form-phone" data-t="form_phone_label">Telefonas</label>
+                            <input type="tel" id="form-phone" class="form-input" placeholder="+370 ...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="form-message" data-t="form_msg_label">Žinutė</label>
+                            <textarea id="form-message" class="form-input form-textarea" placeholder="Aprašykite užduotį..." data-t="form_msg_placeholder"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary" id="btn-form-submit" data-t="form_btn_submit">Siųsti užklausą</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <span class="footer__brand">⚡ <span data-t="company_name">Electro Modus</span></span>
+            <span class="footer__sep">·</span>
+            <span class="footer__copy" data-t="footer_rights">© 2024 Electro Modus. Все права защищены.</span>
+            <span class="footer__sep">·</span>
+            <a href="#" class="footer__link" data-t="footer_privacy">Конфиденциальность</a>
+            <span class="footer__sep">·</span>
+            <a href="#" class="footer__link" data-t="footer_terms">Условия</a>
+            <span class="footer__sep">·</span>
+            <span class="footer__reg" data-t="footer_reg">Рег. № 302000001 · Литва</span>
+        </div>
+    </footer>
+</body>
+
+</html>
