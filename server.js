@@ -128,10 +128,12 @@ const server = http.createServer(async (req, res) => {
                         [name, phone, message],
                         function(err) {
                             if (err) {
+                                console.error('❌ Database error during contact insert:', err.message);
                                 res.writeHead(500);
                                 res.end(JSON.stringify({ error: 'Database error' }));
                                 return resolve();
                             }
+                            console.log(`✅ New lead saved! ID: ${this.lastID}, Name: ${name}`);
                             res.writeHead(201);
                             res.end(JSON.stringify({ message: 'Success', leadId: this.lastID }));
                             resolve();

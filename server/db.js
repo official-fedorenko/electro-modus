@@ -1,8 +1,11 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
-const dbPath = path.join(__dirname, '..', 'database.sqlite');
-const db = new sqlite3.Database(dbPath);
+const dbPath = path.resolve(__dirname, '..', 'database.sqlite');
+const db = new sqlite3.Database(dbPath, (err) => {
+    if (err) console.error('❌ Could not connect to database', err);
+    else console.log(`🗄️ Database connected at: ${dbPath}`);
+});
 
 function initDb() {
     db.serialize(() => {
@@ -33,6 +36,18 @@ function initDb() {
                 token TEXT UNIQUE NOT NULL,
                 expires_at DATETIME NOT NULL,
                 FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+            )
+        `);
+
+        // Таблица заявок (leads)
+        db.run(`
+            CREATE TABLE IF NOT EXISTS leads (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                phone TEXT NOT NULL,
+                message TEXT,
+                status TEXT DEFAULT 'new',
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
             )
         `);
 
