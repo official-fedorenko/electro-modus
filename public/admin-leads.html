@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление заявками — Electro Modus</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src="./scripts/auth.js" defer></script>
+</head>
+<body style="background: var(--bg);">
+    <header class="topbar">
+        <a href="index.html" class="topbar__brand">
+            <div class="topbar__icon">⚡</div>
+            <span class="topbar__name">Electro Modus</span>
+        </a>
+        <div class="topbar__contact">
+            <a href="dashboard.html" class="topbar__cta">В кабинет</a>
+        </div>
+    </header>
+
+    <main class="content" style="padding: 40px 20px;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <h1 class="section__title" style="text-align: left;">Управление заявками (Leads)</h1>
+            
+            <div class="card" style="margin-top: 20px;">
+                <table style="width: 100%; border-collapse: collapse; color: var(--text);">
+                    <thead>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); text-align: left;">
+                            <th style="padding: 15px;">Дата</th>
+                            <th style="padding: 15px;">Имя</th>
+                            <th style="padding: 15px;">Телефон</th>
+                            <th style="padding: 15px;">Сообщение</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leads-table-body">
+                        <!-- Сюда подгрузятся заявки -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        async function loadLeads() {
+            try {
+                const response = await fetch('/api/admin/leads');
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    alert(data.error || 'Ошибка доступа');
+                    window.location.href = 'dashboard.html';
+                    return;
+                }
+
+                const tbody = document.getElementById('leads-table-body');
+                tbody.innerHTML = '';
+
+                data.leads.forEach(lead => {
+                    const row = document.createElement('tr');
+                    row.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+                    const date = new Date(lead.created_at).toLocaleString();
+                    
+                    row.innerHTML = `
+                        <td style="padding: 15px; font-size: 0.9rem; color: var(--text-muted);">${date}</td>
+                        <td style="padding: 15px; font-weight: 600;">${lead.name}</td>
+                        <td style="padding: 15px;"><a href="tel:${lead.phone}" style="color: var(--accent); text-decoration: none;">${lead.phone}</a></td>
+                        <td style="padding: 15px; font-size: 0.9rem;">${lead.message || '-'}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (err) {
+                console.error('Error loading leads:', err);
+            }
+        }
+
+        window.addEventListener('load', loadLeads);
+    </script>
+</body>
+</html>

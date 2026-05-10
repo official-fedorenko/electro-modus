@@ -113,6 +113,33 @@ const server = http.createServer(async (req, res) => {
                 return res.end(JSON.stringify({ user: { email: user.email, role: user.role } }));
             }
 
+            // Обработка формы контактов
+            if (req.method === 'POST' && req.url === '/api/contact') {
+                const { name, phone, message } = await parseBody(req);
+                if (!name || !phone) {
+                    res.writeHead(400);
+                    return res.end(JSON.stringify({ error: 'Name and phone are required' }));
+                }
+
+                const db = require('./server/db');
+                return new Promise((resolve) => {
+                    db.run(
+                        `INSERT INTO leads (name, phone, message) VALUES (?, ?, ?)`,
+                        [name, phone, message],
+                        function(err) {
+                            if (err) {
+                                res.writeHead(500);
+                                res.end(JSON.stringify({ error: 'Database error' }));
+                                return resolve();
+                            }
+                            res.writeHead(201);
+                            res.end(JSON.stringify({ message: 'Success', leadId: this.lastID }));
+                            resolve();
+                        }
+                    );
+                });
+            }
+
             // --- АДМИНСКИЕ МАРШРУТЫ ---
             if (req.url.startsWith('/api/admin')) {
                 const cookies = parseCookies(req);
@@ -144,7 +171,22 @@ const server = http.createServer(async (req, res) => {
                     });
                 }
 
-                // Изменение роли
+                // Получение всех заявок
+                if (req.method === 'GET' && req.url === '/api/admin/leads') {
+                    const db = require('./server/db');
+                    return new Promise((resolve) => {
+                        db.all(`SELECT * FROM leads ORDER BY created_at DESC`, (err, rows) => {
+                            if (err) {
+                                res.writeHead(500);
+                                res.end(JSON.stringify({ error: 'Ошибка БД' }));
+                                return resolve();
+                            }
+                            res.writeHead(200);
+                            res.end(JSON.stringify({ leads: rows }));
+                            resolve();
+                        });
+                    });
+                }
                 if (req.method === 'POST' && req.url === '/api/admin/users/role') {
                     const { userId, newRole } = await parseBody(req);
                     if (!['user', 'worker', 'admin'].includes(newRole)) {
