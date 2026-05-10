@@ -129,7 +129,7 @@ const translations = {
         // Contact Page
         "contact_main_title": "Susisiekite su mumis",
         "contact_addr_title": "Adresas",
-        "contact_addr_text": "Gedimino pr. 15, Vilnius, Lietuva",
+        "contact_addr_text": "Pragiedrulių Sodų 7-oji g. 11, LT-10246 Vilnius",
         "contact_phone_title": "Telefonas",
         "contact_email_title": "El. paštas",
         "contact_hours_title": "Darbo laikas",
@@ -393,11 +393,11 @@ const translations = {
         // Contact Page
         "contact_main_title": "Связаться с нами",
         "contact_addr_title": "Адрес",
-        "contact_addr_text": "ул. Гедимино 15, Вильнюс, Литва",
+        "contact_addr_text": "Pragiedrulių Sodų 7-oji g. 11, LT-10246 Vilnius",
         "contact_phone_title": "Телефон",
         "contact_email_title": "Email",
         "contact_hours_title": "Режим работы",
-        "contact_hours_text": "Пн–Пт: 8:00–18:00 · Сб: 9:00–14:00",
+        "contact_hours_text": "Пн–Пт: 8:00–18:00",
         "form_name_label": "Имя",
         "form_name_placeholder": "Ваше имя",
         "form_phone_label": "Телефон",
