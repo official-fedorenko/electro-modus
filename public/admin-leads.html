@@ -22,6 +22,8 @@
         <div style="max-width: 1000px; margin: 0 auto;">
             <h1 class="section__title" style="text-align: left;">Управление заявками (Leads)</h1>
             
+            <div id="leads-error" style="margin: 20px 0; padding: 15px; border-radius: 8px; display: none; background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef444433;"></div>
+
             <div class="card" style="margin-top: 20px;">
                 <table style="width: 100%; border-collapse: collapse; color: var(--text);">
                     <thead>
@@ -47,8 +49,12 @@
                 const data = await response.json();
                 
                 if (!response.ok) {
-                    alert(data.error || 'Ошибка доступа');
-                    window.location.href = 'dashboard.html';
+                    const errDiv = document.getElementById('leads-error');
+                    errDiv.innerText = data.error || 'Ошибка доступа';
+                    errDiv.style.display = 'block';
+                    if (response.status === 401 || response.status === 403) {
+                        setTimeout(() => window.location.href = 'dashboard.html', 2000);
+                    }
                     return;
                 }
 

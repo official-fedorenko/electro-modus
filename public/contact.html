@@ -158,12 +158,16 @@
                             <textarea id="form-message" name="message" class="form-input form-textarea" placeholder="Aprašykite užduotį..." data-t="form_msg_placeholder"></textarea>
                         </div>
                         <button type="submit" class="btn btn--primary" id="btn-form-submit" data-t="form_btn_submit">Siųsti užklausą</button>
+                        
+                        <!-- Stylish message container -->
+                        <div id="form-message-status" style="margin-top: 20px; padding: 15px; border-radius: 8px; display: none; font-size: 0.9rem; text-align: center; transition: all 0.3s ease;"></div>
                     </form>
                     
                     <script>
                         document.getElementById('contact-form').addEventListener('submit', async (e) => {
                             e.preventDefault();
                             const btn = document.getElementById('btn-form-submit');
+                            const statusDiv = document.getElementById('form-message-status');
                             const originalText = btn.innerText;
                             
                             const data = {
@@ -172,9 +176,22 @@
                                 message: document.getElementById('form-message').value
                             };
 
+                            const showStatus = (text, isError = false) => {
+                                statusDiv.innerText = text;
+                                statusDiv.style.display = 'block';
+                                statusDiv.style.background = isError ? 'rgba(239, 68, 68, 0.1)' : 'rgba(16, 185, 129, 0.1)';
+                                statusDiv.style.color = isError ? '#ef4444' : '#10b981';
+                                statusDiv.style.border = `1px solid ${isError ? '#ef444433' : '#10b98133'}`;
+                                
+                                setTimeout(() => {
+                                    statusDiv.style.display = 'none';
+                                }, 5000);
+                            };
+
                             try {
                                 btn.disabled = true;
                                 btn.innerText = '...';
+                                statusDiv.style.display = 'none';
                                 
                                 const response = await fetch('/api/contact', {
                                     method: 'POST',
@@ -183,13 +200,13 @@
                                 });
 
                                 if (response.ok) {
-                                    alert('Ačiū! Mes susisieksime su jumis greitai. / Спасибо! Мы скоро с вами свяжемся.');
+                                    showStatus('Ačiū! Mes susisieksime su jumis greitai. / Спасибо! Мы скоро с вами свяжемся.');
                                     document.getElementById('contact-form').reset();
                                 } else {
-                                    alert('Klaida. Bandykite dar kartą. / Ошибка. Попробуйте еще раз.');
+                                    showStatus('Klaida. Bandykite dar kartą. / Ошибка. Попробуйте еще раз.', true);
                                 }
                             } catch (err) {
-                                alert('Klaida. Bandykite dar kartą. / Ошибка. Попробуйте еще раз.');
+                                showStatus('Klaida. Bandykite dar kartą. / Ошибка. Попробуйте еще раз.', true);
                             } finally {
                                 btn.disabled = false;
                                 btn.innerText = originalText;
