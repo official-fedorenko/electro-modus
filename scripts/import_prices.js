@@ -86,6 +86,18 @@ db.serialize(() => {
         )
     `);
 
+    // Ensure leads table exists
+    db.run(`
+        CREATE TABLE IF NOT EXISTS leads (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            phone TEXT NOT NULL,
+            message TEXT,
+            status TEXT DEFAULT 'new',
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    `);
+
     // First clear existing prices to avoid duplicates
     db.run('DELETE FROM prices', (err) => {
 
