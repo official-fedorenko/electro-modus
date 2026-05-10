@@ -189,6 +189,24 @@ const server = http.createServer(async (req, res) => {
                         });
                     });
                 }
+                // Удаление заявки
+                if (req.method === 'POST' && req.url === '/api/admin/leads/delete') {
+                    const { leadId } = await parseBody(req);
+                    const db = require('./server/db');
+                    return new Promise((resolve) => {
+                        db.run(`DELETE FROM leads WHERE id = ?`, [leadId], (err) => {
+                            if (err) {
+                                res.writeHead(500);
+                                res.end(JSON.stringify({ error: 'Ошибка БД' }));
+                                return resolve();
+                            }
+                            res.writeHead(200);
+                            res.end(JSON.stringify({ message: 'Удалено' }));
+                            resolve();
+                        });
+                    });
+                }
+
                 if (req.method === 'POST' && req.url === '/api/admin/users/role') {
                     const { userId, newRole } = await parseBody(req);
                     if (!['user', 'worker', 'admin'].includes(newRole)) {

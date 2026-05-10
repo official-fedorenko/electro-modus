@@ -10,94 +10,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/styles.css">
     <script src="./scripts/admin.js" defer></script>
-    <style>
-        .admin-container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .admin-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .admin-table th, .admin-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        .admin-table th {
-            background-color: #f5f5f5;
-        }
-        .role-select {
-            padding: 5px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-        .btn-save {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .btn-save:hover {
-            background: var(--primary-hover);
-        }
-        .msg {
-            margin-top: 10px;
-            color: green;
-        }
-        .error {
-            margin-top: 10px;
-            color: red;
-        }
-    </style>
-</head>
-
-<body>
+<body style="background: var(--bg);">
     <header class="topbar">
         <a href="index.html" class="topbar__brand">
             <div class="topbar__icon">⚡</div>
             <span class="topbar__name">Electro Modus <span style="color:var(--accent)">[ADMIN]</span></span>
         </a>
         <div class="topbar__contact">
-            <a href="dashboard.html" class="topbar__cta" style="background: transparent; color: var(--accent); border: 1px solid var(--accent); margin-right: 10px;">В кабинет</a>
-            <a href="index.html" class="topbar__cta">На главную</a>
+            <a href="dashboard.html" class="topbar__cta">В кабинет</a>
         </div>
     </header>
 
     <div class="layout">
         <main class="content" style="padding: 40px 20px;">
-            <div class="admin-container" style="max-width: 1000px; margin: 0 auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                <div class="admin-header">
-                    <h2>Управление пользователями</h2>
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div class="admin-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <h2 class="section__title" style="margin: 0;">Управление пользователями</h2>
                     <button id="btn-refresh" class="btn btn--primary">Обновить</button>
                 </div>
                 
-                <div id="admin-msg" class="msg"></div>
-                <div id="admin-error" class="error"></div>
+                <div class="card" style="margin-bottom: 20px; padding: 15px;">
+                    <input type="text" id="user-search" class="form-input" placeholder="Поиск по Email или роли..." style="margin: 0; background: rgba(255,255,255,0.03);">
+                </div>
 
-                <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Email</th>
-                            <th>Роль</th>
-                            <th>Дата регистрации</th>
-                            <th>Действие</th>
-                        </tr>
-                    </thead>
-                    <tbody id="users-tbody">
+                <div id="admin-msg" class="msg" style="color: #10b981; margin-bottom: 10px;"></div>
+                <div id="admin-error" class="error" style="color: #ef4444; margin-bottom: 10px;"></div>
+
+                <div class="card" style="padding: 0; overflow-x: auto;">
+                    <table class="admin-table" style="width: 100%; border-collapse: collapse; color: var(--text);">
+                        <thead>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); text-align: left;">
+                                <th style="padding: 15px;">ID</th>
+                                <th style="padding: 15px;">Email</th>
+                                <th style="padding: 15px;">Роль</th>
+                                <th style="padding: 15px;">Регистрация</th>
+                                <th style="padding: 15px;">Действие</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-tbody">
                         <tr><td colspan="5">Загрузка...</td></tr>
                     </tbody>
                 </table>

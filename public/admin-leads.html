@@ -32,6 +32,7 @@
                             <th style="padding: 15px;">Имя</th>
                             <th style="padding: 15px;">Телефон</th>
                             <th style="padding: 15px;">Сообщение</th>
+                            <th style="padding: 15px;">Действие</th>
                         </tr>
                     </thead>
                     <tbody id="leads-table-body">
@@ -43,6 +44,24 @@
     </main>
 
     <script>
+        async function deleteLead(id) {
+            if (!confirm('Удалить эту заявку?')) return;
+            try {
+                const response = await fetch('/api/admin/leads/delete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ leadId: id })
+                });
+                if (response.ok) {
+                    loadLeads();
+                } else {
+                    alert('Ошибка при удалении');
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
         async function loadLeads() {
             try {
                 const response = await fetch('/api/admin/leads');
@@ -67,10 +86,13 @@
                     const date = new Date(lead.created_at).toLocaleString();
                     
                     row.innerHTML = `
-                        <td style="padding: 15px; font-size: 0.9rem; color: var(--text-muted);">${date}</td>
+                        <td style="padding: 15px; font-size: 0.85rem; color: var(--text-muted);">${date}</td>
                         <td style="padding: 15px; font-weight: 600;">${lead.name}</td>
                         <td style="padding: 15px;"><a href="tel:${lead.phone}" style="color: var(--accent); text-decoration: none;">${lead.phone}</a></td>
                         <td style="padding: 15px; font-size: 0.9rem;">${lead.message || '-'}</td>
+                        <td style="padding: 15px;">
+                            <button onclick="deleteLead(${lead.id})" class="btn btn--ghost" style="color: #ef4444; border-color: #ef444433; padding: 5px 10px; font-size: 0.8rem;">Удалить</button>
+                        </td>
                     `;
                     tbody.appendChild(row);
                 });
