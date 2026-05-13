@@ -17,10 +17,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Регистрация
     const regForm = document.getElementById('register-form');
     if (regForm) {
+        const captchaQuestion = document.getElementById('captcha-question');
+        const regCaptcha = document.getElementById('reg-captcha');
+        
+        // Загрузка капчи
+        const loadCaptcha = async () => {
+            try {
+                const data = await apiRequest('/api/captcha', 'GET');
+                if (captchaQuestion) captchaQuestion.textContent = data.question;
+            } catch (err) {
+                console.error('Ошибка загрузки капчи', err);
+            }
+        };
+        
+        loadCaptcha();
+
         regForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('reg-email').value;
             const password = document.getElementById('reg-password').value;
+            const captcha = regCaptcha.value;
             const errDiv = document.getElementById('reg-error');
             const btn = regForm.querySelector('button');
 
@@ -28,12 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.disabled = true;
 
             try {
-                await apiRequest('/api/register', 'POST', { email, password });
+                await apiRequest('/api/register', 'POST', { email, password, captcha });
                 // После успешной регистрации пытаемся сразу войти
                 await apiRequest('/api/login', 'POST', { email, password });
                 window.location.href = '/dashboard.html';
             } catch (err) {
                 errDiv.textContent = err.message;
+                // Обновляем капчу при ошибке
+                loadCaptcha();
+                regCaptcha.value = '';
             } finally {
                 btn.disabled = false;
             }
@@ -142,6 +161,147 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
                 }
+
+                // --- ЛОГИКА ЗАЯВОК ---
+                const ticketsList = document.getElementById('tickets-list');
+                let currentTicketId = null;
+
+                async function loadTickets() {
+                    if (!ticketsList) return;
+                    try {
+                        const tickets = await apiRequest('/api/tickets', 'GET');
+                        ticketsList.innerHTML = '';
+                        if (tickets.length === 0) {
+                            ticketsList.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.9rem;">У вас пока нет заявок.</p>';
+                            return;
+                        }
+
+                        const statusColors = {
+                            'new': 'orange',
+                            'in_progress': 'blue',
+                            'completed': 'green',
+                            'rejected': 'red'
+                        };
+                        const statusNames = {
+                            'new': 'Новая',
+                            'in_progress': 'В работе',
+                            'completed': 'Завершена',
+                            'rejected': 'Отклонена'
+                        };
+
+                        tickets.forEach(t => {
+                            const tDiv = document.createElement('div');
+                            tDiv.style.background = 'var(--bg-base)';
+                            tDiv.style.padding = '10px 15px';
+                            tDiv.style.borderRadius = 'var(--radius-sm)';
+                            tDiv.style.border = '1px solid var(--border)';
+                            tDiv.style.cursor = 'pointer';
+                            tDiv.style.display = 'flex';
+                            tDiv.style.justifyContent = 'space-between';
+                            tDiv.style.alignItems = 'center';
+
+                            tDiv.innerHTML = `
+                                <div>
+                                    <h4 style="margin: 0; font-size: 1rem; color: var(--text-primary);">${t.title}</h4>
+                                    <span style="font-size: 0.8rem; color: var(--text-muted);">${new Date(t.created_at).toLocaleString('ru-RU')}</span>
+                                </div>
+                                <span style="font-size: 0.8rem; font-weight: bold; color: ${statusColors[t.status] || 'gray'}; background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 12px;">${statusNames[t.status] || t.status}</span>
+                            `;
+
+                            tDiv.onclick = () => openTicket(t.id);
+                            ticketsList.appendChild(tDiv);
+                        });
+                    } catch (e) {
+                        ticketsList.innerHTML = '<p style="color: red;">Ошибка загрузки заявок</p>';
+                    }
+                }
+
+                async function openTicket(id) {
+                    currentTicketId = id;
+                    document.getElementById('view-ticket-modal').style.display = 'flex';
+                    const titleEl = document.getElementById('vt-title');
+                    const statusEl = document.getElementById('vt-status');
+                    const msgsEl = document.getElementById('vt-messages');
+                    titleEl.textContent = 'Загрузка...';
+                    msgsEl.innerHTML = '';
+
+                    try {
+                        const [ticket, msgs] = await Promise.all([
+                            apiRequest('/api/tickets/' + id, 'GET'),
+                            apiRequest('/api/tickets/' + id + '/messages', 'GET')
+                        ]);
+
+                        titleEl.textContent = ticket.title;
+                        const statusNames = { 'new': 'Новая', 'in_progress': 'В работе', 'completed': 'Завершена', 'rejected': 'Отклонена' };
+                        statusEl.textContent = 'Статус: ' + (statusNames[ticket.status] || ticket.status);
+
+                        msgs.forEach(m => {
+                            const isMe = m.user_id === data.user.id;
+                            const mDiv = document.createElement('div');
+                            mDiv.style.background = isMe ? 'var(--accent-dim)' : 'rgba(255,255,255,0.05)';
+                            mDiv.style.padding = '10px';
+                            mDiv.style.borderRadius = 'var(--radius-sm)';
+                            mDiv.style.alignSelf = isMe ? 'flex-end' : 'flex-start';
+                            mDiv.style.maxWidth = '80%';
+                            
+                            const senderName = isMe ? 'Вы' : (m.user_role === 'admin' || m.user_role === 'superadmin' ? 'Администратор' : 'Мастер');
+                            mDiv.innerHTML = `
+                                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px;">${senderName} <span style="margin-left: 10px; opacity: 0.6;">${new Date(m.created_at).toLocaleString('ru-RU')}</span></div>
+                                <div style="font-size: 0.95rem; color: var(--text-primary); white-space: pre-wrap;">${m.message}</div>
+                            `;
+                            msgsEl.appendChild(mDiv);
+                        });
+                        msgsEl.scrollTop = msgsEl.scrollHeight;
+                    } catch (e) {
+                        titleEl.textContent = 'Ошибка загрузки';
+                    }
+                }
+
+                const newTicketForm = document.getElementById('new-ticket-form');
+                if (newTicketForm) {
+                    newTicketForm.addEventListener('submit', async (e) => {
+                        e.preventDefault();
+                        const title = document.getElementById('ticket-title').value;
+                        const desc = document.getElementById('ticket-desc').value;
+                        const btn = newTicketForm.querySelector('button');
+                        btn.disabled = true;
+                        try {
+                            await apiRequest('/api/tickets', 'POST', { title, description: desc });
+                            document.getElementById('new-ticket-modal').style.display = 'none';
+                            newTicketForm.reset();
+                            loadTickets();
+                        } catch (err) {
+                            alert('Ошибка: ' + err.message);
+                        } finally {
+                            btn.disabled = false;
+                        }
+                    });
+                }
+
+                const msgForm = document.getElementById('ticket-msg-form');
+                if (msgForm) {
+                    msgForm.addEventListener('submit', async (e) => {
+                        e.preventDefault();
+                        const input = document.getElementById('ticket-msg-input');
+                        const msg = input.value;
+                        if (!currentTicketId || !msg) return;
+                        
+                        const btn = msgForm.querySelector('button');
+                        btn.disabled = true;
+                        try {
+                            await apiRequest('/api/tickets/' + currentTicketId + '/messages', 'POST', { message: msg });
+                            input.value = '';
+                            openTicket(currentTicketId); // перезагружаем сообщения
+                        } catch (err) {
+                            alert('Ошибка: ' + err.message);
+                        } finally {
+                            btn.disabled = false;
+                        }
+                    });
+                }
+
+                loadTickets();
+
             })
             .catch(() => {
                 // Если не авторизован, кидаем на страницу входа
@@ -301,7 +461,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
             .catch(() => {
-                // ─── 3. Не авторизован (кнопки в топбаре удалены по запросу) ───────
+                // ─── 3. Не авторизован: добавляем кнопку входа везде ───────
+                const sidebar = document.querySelector('.sidebar__nav');
+                const loginText = lang === 'lt' ? 'Prisijungti' : 'Войти';
+
+                // В сайдбар
+                if (sidebar && !document.getElementById('sidebar-login-section')) {
+                    const section = document.createElement('div');
+                    section.id = 'sidebar-login-section';
+
+                    const label = document.createElement('p');
+                    label.className = 'sidebar__section-label';
+                    label.textContent = lang === 'lt' ? 'Paskyra' : 'Аккаунт';
+
+                    const ul = document.createElement('ul');
+                    ul.className = 'sidebar__menu';
+
+                    const liLogin = document.createElement('li');
+                    liLogin.innerHTML = `
+                        <a href="login.html" class="sidebar__link">
+                            <span class="sidebar__link-icon">🔑</span>
+                            <span>${loginText}</span>
+                        </a>`;
+                    ul.appendChild(liLogin);
+
+                    section.appendChild(label);
+                    section.appendChild(ul);
+                    sidebar.appendChild(section);
+                }
+
+                // В топбар (аккуратно в конец)
+                if (topbarContact && !document.getElementById('topbar-login-btn')) {
+                    const btnLogin = document.createElement('a');
+                    btnLogin.id = 'topbar-login-btn';
+                    btnLogin.href = 'login.html';
+                    btnLogin.className = 'btn btn--ghost';
+                    btnLogin.style.marginLeft = '10px';
+                    btnLogin.style.padding = '8px 15px';
+                    btnLogin.style.fontSize = '13px';
+                    btnLogin.textContent = loginText;
+                    topbarContact.appendChild(btnLogin);
+                }
             });
     }
 });
