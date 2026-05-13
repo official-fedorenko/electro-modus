@@ -34,7 +34,7 @@
                     <h2 class="section__title">Добро пожаловать в личный кабинет!</h2>
                     <p class="section__subtitle" id="dashboard-email">Загрузка...</p>
                     
-                    <div class="dashboard-grid" style="display: grid; gap: 20px; grid-template-columns: 1fr; margin-top: 20px;">
+                    <div class="dashboard-grid">
                         <div class="card">
                             <h3 class="card__title" style="margin-bottom: 15px;">Личные данные</h3>
                             <form id="profile-form" style="display: flex; flex-direction: column; gap: 15px;">
@@ -53,6 +53,16 @@
                                 <button type="submit" class="btn btn--primary">Сохранить изменения</button>
                                 <p id="profile-message" style="margin-top: 10px; font-size: 0.9rem;"></p>
                             </form>
+                        </div>
+                        
+                        <div class="card">
+                            <h3 class="card__title" style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                                Мои заявки
+                                <button class="btn btn--ghost btn--small" onclick="document.getElementById('new-ticket-modal').style.display='flex'" style="padding: 5px 10px; font-size: 0.8rem;">+ Новая заявка</button>
+                            </h3>
+                            <div id="tickets-list" style="display: flex; flex-direction: column; gap: 10px; max-height: 350px; overflow-y: auto;">
+                                <p style="color: var(--text-secondary); font-size: 0.9rem;">Загрузка...</p>
+                            </div>
                         </div>
                     </div>
 
@@ -84,11 +94,48 @@
                     <div class="admin-menu-icon">⚙️</div>
                     <span>Настройки</span>
                 </div>
-                <div class="admin-menu-item disabled">
-                    <div class="admin-menu-icon">📊</div>
-                    <span>Статистика</span>
-                </div>
+                <a href="admin-tickets.html" class="admin-menu-item">
+                    <div class="admin-menu-icon">🎫</div>
+                    <span>Тикеты (Чат)</span>
+                </a>
             </div>
+        </div>
+    </div>
+    <!-- NEW TICKET MODAL -->
+    <div id="new-ticket-modal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close-modal" onclick="document.getElementById('new-ticket-modal').style.display='none'">&times;</span>
+            <h2 class="section__title" style="text-align: left; margin-bottom: 15px;">Новая заявка</h2>
+            <form id="new-ticket-form" style="display: flex; flex-direction: column; gap: 15px;">
+                <div>
+                    <label class="form-label">Тема</label>
+                    <input type="text" id="ticket-title" class="form-input" required placeholder="Краткое описание проблемы">
+                </div>
+                <div>
+                    <label class="form-label">Описание</label>
+                    <textarea id="ticket-desc" class="form-input" rows="4" placeholder="Подробно опишите задачу или проблему..."></textarea>
+                </div>
+                <button type="submit" class="btn btn--primary">Создать</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- VIEW TICKET MODAL -->
+    <div id="view-ticket-modal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 600px; display: flex; flex-direction: column; height: 80vh;">
+            <span class="close-modal" onclick="document.getElementById('view-ticket-modal').style.display='none'">&times;</span>
+            <h2 class="section__title" id="vt-title" style="text-align: left; margin-bottom: 5px; font-size: 1.2rem;">Загрузка...</h2>
+            <p id="vt-status" style="font-size: 0.9rem; color: var(--accent); margin-bottom: 10px;">Статус</p>
+            <p id="vt-desc" style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 15px; white-space: pre-wrap; padding: 10px; background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border-left: 3px solid var(--border);"></p>
+            
+            <div id="vt-messages" style="flex: 1; overflow-y: auto; background: var(--bg-base); border-radius: var(--radius-sm); padding: 15px; display: flex; flex-direction: column; gap: 15px; margin-bottom: 15px; border: 1px solid var(--border);">
+                <!-- Messages go here -->
+            </div>
+
+            <form id="ticket-msg-form" style="display: flex; gap: 10px;">
+                <input type="text" id="ticket-msg-input" class="form-input" placeholder="Написать сообщение..." style="flex: 1; margin: 0;" required>
+                <button type="submit" class="btn btn--primary" style="padding: 0 20px;">Отправить</button>
+            </form>
         </div>
     </div>
 </body>

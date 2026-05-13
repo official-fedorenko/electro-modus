@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление тикетами (Запросами) — Electro Modus</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src="./scripts/auth.js" defer></script>
+</head>
+<body style="background: var(--bg);">
+    <header class="topbar">
+        <a href="index.html" class="topbar__brand">
+            <div class="topbar__icon">⚡</div>
+            <span class="topbar__name">Electro Modus</span>
+        </a>
+        <div class="topbar__contact">
+            <a href="dashboard.html" class="topbar__cta">В кабинет</a>
+        </div>
+    </header>
+
+    <main class="content" style="padding: 40px 20px;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <h1 class="section__title" style="text-align: left;">Управление запросами пользователей (Тикеты)</h1>
+            
+            <div id="tickets-error" style="margin: 20px 0; padding: 15px; border-radius: 8px; display: none; background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef444433;"></div>
+
+            <div class="card" style="margin-top: 20px;">
+                <table style="width: 100%; border-collapse: collapse; color: var(--text);">
+                    <thead>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); text-align: left;">
+                            <th style="padding: 15px;">ID</th>
+                            <th style="padding: 15px;">Дата</th>
+                            <th style="padding: 15px;">Клиент</th>
+                            <th style="padding: 15px;">Тема</th>
+                            <th style="padding: 15px;">Статус</th>
+                            <th style="padding: 15px;">Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tickets-table-body">
+                        <!-- Сюда подгрузятся тикеты -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- VIEW TICKET MODAL -->
+    <div id="admin-view-ticket-modal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 700px; display: flex; flex-direction: column; height: 85vh;">
+            <span class="close-modal" onclick="document.getElementById('admin-view-ticket-modal').style.display='none'">&times;</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h2 class="section__title" id="admin-vt-title" style="margin: 0; font-size: 1.2rem;">Загрузка...</h2>
+                <select id="admin-vt-status-select" class="form-input" style="width: auto; margin: 0; padding: 5px 10px; background: var(--bg); color: var(--text);">
+                    <option value="new">Новая</option>
+                    <option value="in_progress">В работе</option>
+                    <option value="completed">Завершена</option>
+                    <option value="rejected">Отклонена</option>
+                </select>
+            </div>
+            <p id="admin-vt-desc" style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 15px; white-space: pre-wrap;"></p>
+            
+            <div id="admin-vt-messages" style="flex: 1; overflow-y: auto; background: var(--bg-base); border-radius: var(--radius-sm); padding: 15px; display: flex; flex-direction: column; gap: 15px; margin-bottom: 15px; border: 1px solid var(--border);">
+                <!-- Messages go here -->
+            </div>
+
+            <form id="admin-ticket-msg-form" style="display: flex; gap: 10px;">
+                <input type="text" id="admin-ticket-msg-input" class="form-input" placeholder="Ответить клиенту..." style="flex: 1; margin: 0;" required>
+                <button type="submit" class="btn btn--primary" style="padding: 0 20px;">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentAdminTicketId = null;
+
+        async function apiReq(url, method, body) {
+            const response = await fetch(url, {
+                method,
+                headers: { 'Content-Type': 'application/json' },
+                body: body ? JSON.stringify(body) : undefined
+            });
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error || 'Ошибка');
+            return data;
+        }
+
+        async function loadAdminTickets() {
+            try {
+                const tickets = await apiReq('/api/tickets', 'GET');
+                const tbody = document.getElementById('tickets-table-body');
+                tbody.innerHTML = '';
+
+                const statusColors = { 'new': 'orange', 'in_progress': 'blue', 'completed': 'green', 'rejected': 'red' };
+                const statusNames = { 'new': 'Новая', 'in_progress': 'В работе', 'completed': 'Завершена', 'rejected': 'Отклонена' };
+
+                tickets.forEach(t => {
+                    const row = document.createElement('tr');
+                    row.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+                    row.innerHTML = `
+                        <td style="padding: 15px; font-size: 0.85rem; color: var(--text-muted);">#${t.id}</td>
+                        <td style="padding: 15px; font-size: 0.85rem; color: var(--text-muted);">${new Date(t.created_at).toLocaleString('ru-RU')}</td>
+                        <td style="padding: 15px; font-size: 0.9rem;">${t.user_name || t.user_email}<br><span style="font-size:0.75rem;color:var(--text-muted)">${t.user_email}</span></td>
+                        <td style="padding: 15px; font-weight: 600;">${t.title}</td>
+                        <td style="padding: 15px;">
+                            <span style="font-size: 0.8rem; font-weight: bold; color: ${statusColors[t.status] || 'gray'}; background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 12px;">${statusNames[t.status] || t.status}</span>
+                        </td>
+                        <td style="padding: 15px;">
+                            <button onclick="openAdminTicket(${t.id})" class="btn btn--primary" style="padding: 5px 15px; font-size: 0.8rem;">Открыть</button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (err) {
+                const errDiv = document.getElementById('tickets-error');
+                errDiv.innerText = err.message;
+                errDiv.style.display = 'block';
+            }
+        }
+
+        async function openAdminTicket(id) {
+            currentAdminTicketId = id;
+            document.getElementById('admin-view-ticket-modal').style.display = 'flex';
+            document.getElementById('admin-vt-title').textContent = 'Загрузка...';
+            document.getElementById('admin-vt-messages').innerHTML = '';
+            
+            try {
+                const ticket = await apiReq('/api/tickets/' + id, 'GET');
+                const msgs = await apiReq('/api/tickets/' + id + '/messages', 'GET');
+                
+                document.getElementById('admin-vt-title').textContent = \`#\${ticket.id} \${ticket.title}\`;
+                document.getElementById('admin-vt-desc').textContent = ticket.description || 'Нет описания';
+                document.getElementById('admin-vt-status-select').value = ticket.status;
+                
+                const msgsEl = document.getElementById('admin-vt-messages');
+                msgs.forEach(m => {
+                    const isMe = false; // Упрощенно, мы админ, так что слева клиент, справа админ/воркер
+                    const isAdmin = m.user_role === 'admin' || m.user_role === 'superadmin' || m.user_role === 'worker';
+                    
+                    const mDiv = document.createElement('div');
+                    mDiv.style.background = isAdmin ? 'var(--accent-dim)' : 'rgba(255,255,255,0.05)';
+                    mDiv.style.padding = '10px';
+                    mDiv.style.borderRadius = 'var(--radius-sm)';
+                    mDiv.style.alignSelf = isAdmin ? 'flex-end' : 'flex-start';
+                    mDiv.style.maxWidth = '80%';
+                    
+                    const senderName = isAdmin ? \`\${m.user_name || 'Сотрудник'} (\${m.user_role})\` : \`Клиент (\${m.user_name || m.user_email})\`;
+                    mDiv.innerHTML = \`
+                        <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px;">\${senderName} <span style="margin-left: 10px; opacity: 0.6;">\${new Date(m.created_at).toLocaleString('ru-RU')}</span></div>
+                        <div style="font-size: 0.95rem; color: var(--text-primary); white-space: pre-wrap;">\${m.message}</div>
+                    \`;
+                    msgsEl.appendChild(mDiv);
+                });
+                msgsEl.scrollTop = msgsEl.scrollHeight;
+            } catch (err) {
+                alert('Ошибка: ' + err.message);
+            }
+        }
+
+        document.getElementById('admin-vt-status-select').addEventListener('change', async (e) => {
+            if (!currentAdminTicketId) return;
+            try {
+                await apiReq('/api/tickets/' + currentAdminTicketId + '/status', 'PUT', { status: e.target.value });
+                loadAdminTickets();
+            } catch (err) {
+                alert('Ошибка при смене статуса: ' + err.message);
+            }
+        });
+
+        document.getElementById('admin-ticket-msg-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const input = document.getElementById('admin-ticket-msg-input');
+            const msg = input.value;
+            if (!currentAdminTicketId || !msg) return;
+            
+            try {
+                await apiReq('/api/tickets/' + currentAdminTicketId + '/messages', 'POST', { message: msg });
+                input.value = '';
+                openAdminTicket(currentAdminTicketId);
+            } catch (err) {
+                alert('Ошибка: ' + err.message);
+            }
+        });
+
+        window.addEventListener('load', loadAdminTickets);
+    </script>
+</body>
+</html>

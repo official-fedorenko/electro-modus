@@ -40,7 +40,7 @@ const translations = {
 
         // Hero
         "hero_badge": "⚡ Profesionalus elektros montavimas",
-        "hero_title_v1": "Patikima elektra — nuo projekto iki pridavimo",
+        "hero_title_v1": "Patikimas elektros montavimas — nuo projekto iki pridavimo",
         "hero_subtitle_v1": "Sumanūs elektros montavimo sprendimai jūsų verslui ir namams. Kokybė ir garantija kiekviename objekte.",
         "hero_title_v2": "Elektros montavimas. Kokybė. Garantija.",
         "hero_subtitle_v2": "Aukščiausios klasės paslaugos privatiems asmenims ir organizacijoms visoje Lietuvoje.",
@@ -175,6 +175,8 @@ const translations = {
         "auth_reg_title": "Registracija",
         "auth_btn_reg": "Sukurti paskyrą",
         "auth_has_account": "Jau turite paskyrą?",
+        "auth_captcha_label": "Saugos patikra: kiek bus",
+        "auth_captcha_placeholder": "Atsakymas?",
         "nav_back": "Atgal į pagrindinį",
 
         // Price Page
@@ -319,7 +321,7 @@ const translations = {
 
         // Hero
         "hero_badge": "⚡ Профессиональный электромонтаж",
-        "hero_title_v1": "Надежное электричество — от проекта до сдачи под ключ",
+        "hero_title_v1": "Электромонтаж под ключ — от проекта до сдачи",
         "hero_subtitle_v1": "Умные электрорешения для вашего бизнеса и дома. Качество и гарантия в каждом объекте.",
         "hero_title_v2": "Электромонтаж. Качество. Гарантия.",
         "hero_subtitle_v2": "Услуги высшего класса для частных лиц и организаций по всей Литве.",
@@ -454,6 +456,8 @@ const translations = {
         "auth_reg_title": "Регистрация",
         "auth_btn_reg": "Создать аккаунт",
         "auth_has_account": "Уже есть аккаунт?",
+        "auth_captcha_label": "Проверка безопасности: сколько будет",
+        "auth_captcha_placeholder": "Ответ?",
         "nav_back": "На главную",
 
         // Price Page

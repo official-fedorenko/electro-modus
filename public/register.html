@@ -43,6 +43,13 @@
                         <label class="form-label" for="reg-password" data-t="auth_pass_label">Slaptažodis</label>
                         <input type="password" id="reg-password" class="form-input" required minlength="6">
                     </div>
+                    <div class="form-group captcha-group" style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.03); padding: 10px; border-radius: var(--radius-sm);">
+                        <div style="flex: 1;">
+                            <label class="form-label" style="margin-bottom: 5px; font-size: 0.8rem; color: var(--accent);" data-t="auth_captcha_label">Saugos patikra: kiek bus</label>
+                            <div id="captcha-question" style="font-weight: 700; font-size: 1.1rem; letter-spacing: 2px; color: var(--text-primary);">...</div>
+                        </div>
+                        <input type="number" id="reg-captcha" class="form-input" style="width: 80px; margin: 0; text-align: center; font-size: 1.1rem; border-color: var(--accent-33);" data-t="auth_captcha_placeholder" required>
+                    </div>
                     <div id="reg-error" class="form-error"></div>
                     <button type="submit" class="btn btn--primary auth-form__btn" data-t="auth_btn_reg">Sukurti paskyrą</button>
                 </form>

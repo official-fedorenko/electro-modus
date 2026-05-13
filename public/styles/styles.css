@@ -1884,3 +1884,20 @@ a {
     color: #000;
     border-color: var(--accent);
 }
+
+/* =============================================
+   DASHBOARD GRID (Responsive)
+   ============================================= */
+.dashboard-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

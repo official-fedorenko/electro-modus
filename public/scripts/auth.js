@@ -232,6 +232,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         ]);
 
                         titleEl.textContent = ticket.title;
+                        
+                        const descEl = document.getElementById('vt-desc');
+                        if (descEl) {
+                            descEl.textContent = ticket.description || 'Описание не предоставлено.';
+                        }
+
                         const statusNames = { 'new': 'Новая', 'in_progress': 'В работе', 'completed': 'Завершена', 'rejected': 'Отклонена' };
                         statusEl.textContent = 'Статус: ' + (statusNames[ticket.status] || ticket.status);
 

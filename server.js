@@ -2,6 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const auth = require('./server/auth');
+const tickets = require('./server/tickets');
 
 const PORT = process.env.PORT || 3000;
 const PUBLIC_DIR = path.join(__dirname, 'public');
@@ -65,15 +66,48 @@ const server = http.createServer(async (req, res) => {
         res.setHeader('Content-Type', 'application/json');
 
         try {
+            // Генерация простой капчи
+            if (req.method === 'GET' && req.url === '/api/captcha') {
+                const a = Math.floor(Math.random() * 10) + 1;
+                const b = Math.floor(Math.random() * 10) + 1;
+                const sum = a + b;
+                
+                // Создаем временный токен для ответа (просто для примера, в идеале — сессия)
+                const captchaToken = Buffer.from(`${sum}-${Date.now()}`).toString('base64');
+                
+                res.writeHead(200, {
+                    'Set-Cookie': `captcha_token=${captchaToken}; HttpOnly; Path=/; Max-Age=300`
+                });
+                return res.end(JSON.stringify({ question: `${a} + ${b} = ?` }));
+            }
+
             if (req.method === 'POST' && req.url === '/api/register') {
-                const { email, password } = await parseBody(req);
-                if (!email || !password) {
+                const { email, password, captcha } = await parseBody(req);
+                if (!email || !password || !captcha) {
                     res.writeHead(400);
-                    return res.end(JSON.stringify({ error: 'Email и пароль обязательны' }));
+                    return res.end(JSON.stringify({ error: 'Все поля обязательны' }));
+                }
+
+                // Проверка капчи
+                const cookies = parseCookies(req);
+                if (!cookies.captcha_token) {
+                    res.writeHead(400);
+                    return res.end(JSON.stringify({ error: 'Капча истекла, обновите страницу' }));
+                }
+
+                const decoded = Buffer.from(cookies.captcha_token, 'base64').toString().split('-');
+                const expectedSum = decoded[0];
+                const timestamp = parseInt(decoded[1]);
+
+                if (captcha.toString() !== expectedSum || Date.now() - timestamp > 300000) {
+                    res.writeHead(400);
+                    return res.end(JSON.stringify({ error: 'Неверный ответ на капчу' }));
                 }
 
                 await auth.registerUser(email, password);
-                res.writeHead(201);
+                res.writeHead(201, {
+                    'Set-Cookie': 'captcha_token=; HttpOnly; Path=/; Max-Age=0'
+                });
                 return res.end(JSON.stringify({ message: 'Регистрация успешна' }));
             }
 
@@ -149,6 +183,125 @@ const server = http.createServer(async (req, res) => {
                         }
                     );
                 });
+            }
+
+            // --- МАРШРУТЫ ЗАЯВОК (TICKETS) ---
+            if (req.url.startsWith('/api/tickets')) {
+                const cookies = parseCookies(req);
+                if (!cookies.session_token) {
+                    res.writeHead(401);
+                    return res.end(JSON.stringify({ error: 'Не авторизован' }));
+                }
+
+                const user = await auth.getUserByToken(cookies.session_token);
+                if (!user) {
+                    res.writeHead(401);
+                    return res.end(JSON.stringify({ error: 'Сессия недействительна' }));
+                }
+
+                // POST /api/tickets - Создать заявку
+                if (req.method === 'POST' && req.url === '/api/tickets') {
+                    const { title, description } = await parseBody(req);
+                    if (!title) {
+                        res.writeHead(400);
+                        return res.end(JSON.stringify({ error: 'Заголовок обязателен' }));
+                    }
+                    try {
+                        const ticket = await tickets.createTicket(user.id, title, description);
+                        res.writeHead(201);
+                        return res.end(JSON.stringify(ticket));
+                    } catch (e) {
+                        res.writeHead(500);
+                        return res.end(JSON.stringify({ error: 'Ошибка сервера' }));
+                    }
+                }
+
+                // GET /api/tickets - Получить список заявок
+                if (req.method === 'GET' && req.url === '/api/tickets') {
+                    try {
+                        let tks;
+                        // Админы и воркеры видят все заявки, обычные пользователи - только свои
+                        if (user.role === 'admin' || user.role === 'superadmin' || user.role === 'worker') {
+                            tks = await tickets.getAllTickets();
+                        } else {
+                            tks = await tickets.getUserTickets(user.id);
+                        }
+                        res.writeHead(200);
+                        return res.end(JSON.stringify(tks));
+                    } catch (e) {
+                        res.writeHead(500);
+                        return res.end(JSON.stringify({ error: 'Ошибка сервера' }));
+                    }
+                }
+
+                // Вспомогательная функция для парсинга ID заявки из URL
+                const matchTicketId = req.url.match(/^\/api\/tickets\/(\d+)/);
+                if (matchTicketId) {
+                    const ticketId = parseInt(matchTicketId[1]);
+                    
+                    // Проверка доступа к конкретной заявке (пользователь может видеть только свою)
+                    const ticket = await tickets.getTicket(ticketId);
+                    if (!ticket) {
+                        res.writeHead(404);
+                        return res.end(JSON.stringify({ error: 'Заявка не найдена' }));
+                    }
+                    if (ticket.user_id !== user.id && !['admin', 'superadmin', 'worker'].includes(user.role)) {
+                        res.writeHead(403);
+                        return res.end(JSON.stringify({ error: 'Нет доступа' }));
+                    }
+
+                    // GET /api/tickets/:id - Получить саму заявку
+                    if (req.method === 'GET' && req.url === `/api/tickets/${ticketId}`) {
+                        res.writeHead(200);
+                        return res.end(JSON.stringify(ticket));
+                    }
+
+                    // GET /api/tickets/:id/messages - Получить сообщения
+                    if (req.method === 'GET' && req.url === `/api/tickets/${ticketId}/messages`) {
+                        try {
+                            const msgs = await tickets.getMessages(ticketId);
+                            res.writeHead(200);
+                            return res.end(JSON.stringify(msgs));
+                        } catch (e) {
+                            res.writeHead(500);
+                            return res.end(JSON.stringify({ error: 'Ошибка сервера' }));
+                        }
+                    }
+
+                    // POST /api/tickets/:id/messages - Добавить сообщение
+                    if (req.method === 'POST' && req.url === `/api/tickets/${ticketId}/messages`) {
+                        const { message } = await parseBody(req);
+                        if (!message) {
+                            res.writeHead(400);
+                            return res.end(JSON.stringify({ error: 'Сообщение не может быть пустым' }));
+                        }
+                        try {
+                            const msg = await tickets.addMessage(ticketId, user.id, message);
+                            res.writeHead(201);
+                            return res.end(JSON.stringify(msg));
+                        } catch (e) {
+                            res.writeHead(500);
+                            return res.end(JSON.stringify({ error: 'Ошибка сервера' }));
+                        }
+                    }
+
+                    // PUT /api/tickets/:id/status - Изменить статус (только админы/воркеры)
+                    if (req.method === 'PUT' && req.url === `/api/tickets/${ticketId}/status`) {
+                        if (!['admin', 'superadmin', 'worker'].includes(user.role)) {
+                            res.writeHead(403);
+                            return res.end(JSON.stringify({ error: 'Нет прав' }));
+                        }
+                        const { status } = await parseBody(req);
+                        try {
+                            await tickets.updateTicketStatus(ticketId, status);
+                            res.writeHead(200);
+                            return res.end(JSON.stringify({ success: true }));
+                        } catch (e) {
+                            res.writeHead(500);
+                            return res.end(JSON.stringify({ error: 'Ошибка сервера' }));
+                        }
+                    }
+                }
             }
 
             // Обработка формы контактов
