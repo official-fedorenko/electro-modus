@@ -5,7 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnRefresh = document.getElementById('btn-refresh');
     const searchInput = document.getElementById('user-search');
 
+    // Modal elements
+    const roleModal = document.getElementById('role-modal');
+    const roleOptions = document.getElementById('role-options');
+    const closeRoleModal = document.getElementById('close-role-modal');
+    const roleModalEmail = document.getElementById('role-modal-email');
+
     let allUsers = [];
+    let activeUserId = null;
 
     async function apiRequest(url, method = 'GET', body = null) {
         const options = {
@@ -52,52 +59,77 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const isRestricted = user.role === 'superadmin' || user.email === 'admin@mail.com';
 
+            // Role Badge styling
+            let badgeClass = 'badge--user';
+            if (user.role === 'admin' || user.role === 'superadmin') badgeClass = 'badge--admin';
+            if (user.role === 'worker') badgeClass = 'badge--worker';
+
             tr.innerHTML = `
                 <td style="padding: 15px; color: var(--text-muted); font-size: 0.9rem;">${user.id}</td>
                 <td style="padding: 15px; font-weight: 600;">${user.email}</td>
                 <td style="padding: 15px;">
-                    <select class="form-input" style="margin:0; padding: 5px 10px; font-size: 0.85rem; width: auto; background: rgba(255,255,255,0.05);" ${isRestricted ? 'disabled' : ''}>
-                        <option value="user" ${user.role === 'user' ? 'selected' : ''}>USER</option>
-                        <option value="worker" ${user.role === 'worker' ? 'selected' : ''}>WORKER</option>
-                        <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>ADMIN</option>
-                        <option value="superadmin" ${user.role === 'superadmin' ? 'selected' : ''}>SUPERADMIN</option>
-                    </select>
+                    <div class="role-badge ${badgeClass} ${isRestricted ? 'locked' : 'clickable'}" data-userid="${user.id}">
+                        ${user.role.toUpperCase()}
+                        ${!isRestricted ? '<span style="margin-left:5px; opacity:0.5;">▼</span>' : ''}
+                    </div>
                 </td>
                 <td style="padding: 15px; font-size: 0.85rem; color: var(--text-muted);">${new Date(user.created_at).toLocaleString()}</td>
                 <td style="padding: 15px;">
-                    <button class="btn btn--ghost btn-save" style="padding: 5px 15px; font-size: 0.8rem; border-color: var(--accent-33); color: var(--accent);" ${isRestricted ? 'disabled style="opacity:0.3"' : ''}>Сохранить</button>
+                    <button class="btn btn--ghost" style="padding: 5px 15px; font-size: 0.8rem; border-color: #ef444433; color: #ef4444;" onclick="alert('Функция удаления в разработке')">Удалить</button>
                 </td>
             `;
 
-            const select = tr.querySelector('select');
-            const btnSave = tr.querySelector('.btn-save');
-
-            btnSave.onclick = async () => {
-                try {
-                    errDiv.textContent = '';
-                    msgDiv.textContent = '';
-                    btnSave.disabled = true;
-                    btnSave.textContent = '...';
-                    
-                    await apiRequest('/api/admin/users/role', 'POST', {
-                        userId: user.id,
-                        newRole: select.value
-                    });
-                    
-                    msgDiv.textContent = `Роль ${user.email} обновлена на ${select.value.toUpperCase()}`;
-                    user.role = select.value; // Update local state
-                } catch (err) {
-                    errDiv.textContent = err.message;
-                    select.value = user.role;
-                } finally {
-                    btnSave.disabled = false;
-                    btnSave.textContent = 'Сохранить';
-                }
-            };
+            if (!isRestricted) {
+                const badge = tr.querySelector('.role-badge');
+                badge.onclick = () => openRoleModal(user);
+            }
 
             tbody.appendChild(tr);
         });
     }
+
+    function openRoleModal(user) {
+        activeUserId = user.id;
+        roleModalEmail.textContent = `Пользователь: ${user.email}`;
+        
+        const roles = ['user', 'worker', 'admin', 'superadmin'];
+        roleOptions.innerHTML = '';
+        
+        roles.forEach(role => {
+            const btn = document.createElement('button');
+            btn.className = `role-option-btn ${user.role === role ? 'active' : ''}`;
+            btn.innerHTML = `
+                <span>${role.toUpperCase()}</span>
+                ${user.role === role ? '<span>✓</span>' : ''}
+            `;
+            btn.onclick = () => updateRole(role);
+            roleOptions.appendChild(btn);
+        });
+        
+        roleModal.style.display = 'flex';
+    }
+
+    async function updateRole(newRole) {
+        try {
+            msgDiv.textContent = '';
+            errDiv.textContent = '';
+            
+            await apiRequest('/api/admin/users/role', 'POST', {
+                userId: activeUserId,
+                newRole: newRole
+            });
+            
+            roleModal.style.display = 'none';
+            msgDiv.textContent = 'Роль успешно обновлена';
+            loadUsers(); // Refresh the list
+        } catch (err) {
+            errDiv.textContent = err.message;
+        }
+    }
+
+    // Modal Close
+    closeRoleModal.onclick = () => roleModal.style.display = 'none';
+    window.onclick = (e) => { if (e.target === roleModal) roleModal.style.display = 'none'; };
 
     // Search functionality
     searchInput.addEventListener('input', (e) => {
@@ -112,3 +144,4 @@ document.addEventListener('DOMContentLoaded', () => {
     btnRefresh.onclick = loadUsers;
     loadUsers();
 });
+
