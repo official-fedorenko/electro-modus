@@ -1791,7 +1791,7 @@ a {
 
 /* Admin Select Dropdown */
 .admin-select {
-    padding: 8px 12px;
+    padding: 8px 32px 8px 12px;
     border-radius: var(--radius);
     border: 1px solid var(--border);
     background-color: var(--surface);
@@ -1799,15 +1799,29 @@ a {
     font-family: inherit;
     font-size: 0.9rem;
     cursor: pointer;
-    transition: border-color var(--transition);
+    transition: all var(--transition);
     outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f0a500' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    color-scheme: dark; /* Принуждает браузер использовать темную тему для выпадающего списка */
+}
+
+.admin-select:hover {
+    border-color: var(--accent);
+    background-color: #2a2a2a;
 }
 
 .admin-select:focus {
     border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(240, 165, 0, 0.2);
 }
 
 .admin-select option {
-    background-color: var(--surface);
+    background-color: #1e1e1e;
     color: var(--text);
+    padding: 10px;
 }
+

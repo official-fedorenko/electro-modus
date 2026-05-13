@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const select = document.createElement('select');
                 select.className = 'admin-select';
 
-                ['user', 'worker', 'admin'].forEach(r => {
+                ['user', 'worker', 'admin', 'superadmin'].forEach(r => {
                     const option = document.createElement('option');
                     option.value = r;
                     option.textContent = r.toUpperCase();
