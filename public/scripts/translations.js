@@ -40,8 +40,10 @@ const translations = {
 
         // Hero
         "hero_badge": "⚡ Profesionalus elektros montavimas",
-        "hero_title": "Jūsų sėkmės energija<br>patikimose rankose",
-        "hero_subtitle": "Projektuojame ir įgyvendiname sudėtingus elektros montavimo sprendimus verslui ir privatiems namams Lietuvoje. Kokybė, patikrinta metais.",
+        "hero_title_v1": "Patikima elektra — nuo projekto iki pridavimo",
+        "hero_subtitle_v1": "Sumanūs elektros montavimo sprendimai jūsų verslui ir namams. Kokybė ir garantija kiekviename objekte.",
+        "hero_title_v2": "Elektros montavimas. Kokybė. Garantija.",
+        "hero_subtitle_v2": "Aukščiausios klasės paslaugos privatiems asmenims ir organizacijoms visoje Lietuvoje.",
         "hero_btn_consult": "Gauti konsultaciją",
         "hero_btn_projects": "Mūsų darbai",
         "hero_stat_exp": "metų patirtis",
@@ -317,8 +319,10 @@ const translations = {
 
         // Hero
         "hero_badge": "⚡ Профессиональный электромонтаж",
-        "hero_title": "Энергия вашего успеха<br>в надежных руках",
-        "hero_subtitle": "Проектируем и реализуем сложные электромонтажные решения для бизнеса и частных домов в Литве. Качество, подтвержденное годами.",
+        "hero_title_v1": "Надежное электричество — от проекта до сдачи под ключ",
+        "hero_subtitle_v1": "Умные электрорешения для вашего бизнеса и дома. Качество и гарантия в каждом объекте.",
+        "hero_title_v2": "Электромонтаж. Качество. Гарантия.",
+        "hero_subtitle_v2": "Услуги высшего класса для частных лиц и организаций по всей Литве.",
         "hero_btn_consult": "Получить консультацию",
         "hero_btn_projects": "Наши работы",
         "hero_stat_exp": "лет опыта",

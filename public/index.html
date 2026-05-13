@@ -119,10 +119,16 @@
         <main class="content">
             <!-- HERO -->
             <section class="hero">
-                <div class="hero__badge" data-t="hero_badge">⚡ Profesionalus elektros montavimas</div>
-                <h1 class="hero__title" data-t="hero_title">Jūsų sėkmės energija<br>patikimose rankose</h1>
-                <p class="hero__subtitle" data-t="hero_subtitle">Projektuojame ir įgyvendiname sudėtingus elektros
-                    montavimo sprendimus verslui ir privatiems namams Lietuvoje. Kokybė, patikrinta metais.</p>
+                <script>
+                    (function() {
+                        const version = Math.random() > 0.5 ? 'v1' : 'v2';
+                        document.write(`
+                            <div class="hero__badge" data-t="hero_badge">⚡ Profesionalus elektros montavimas</div>
+                            <h1 class="hero__title" data-t="hero_title_${version}">...</h1>
+                            <p class="hero__subtitle" data-t="hero_subtitle_${version}">...</p>
+                        `);
+                    })();
+                </script>
                 <div class="hero__actions">
                     <a href="contact.html" class="btn btn--primary" data-t="hero_btn_consult">Gauti konsultaciją</a>
                     <a href="projects.html" class="btn btn--ghost" data-t="hero_btn_projects">Mūsų darbai</a>
