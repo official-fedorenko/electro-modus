@@ -1788,3 +1788,26 @@ a {
 .admin-menu-icon {
     font-size: 32px;
 }
+
+/* Admin Select Dropdown */
+.admin-select {
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background-color: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color var(--transition);
+    outline: none;
+}
+
+.admin-select:focus {
+    border-color: var(--accent);
+}
+
+.admin-select option {
+    background-color: var(--surface);
+    color: var(--text);
+}

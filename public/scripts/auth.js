@@ -109,6 +109,39 @@ document.addEventListener('DOMContentLoaded', () => {
                         };
                     }
                 }
+
+                // Заполнение формы профиля
+                const profileEmail = document.getElementById('profile-email');
+                const profileName = document.getElementById('profile-name');
+                const profilePhone = document.getElementById('profile-phone');
+                
+                if (profileEmail) profileEmail.value = data.user.email;
+                if (profileName) profileName.value = data.user.name || '';
+                if (profilePhone) profilePhone.value = data.user.phone || '';
+
+                // Обработка сохранения формы
+                const profileForm = document.getElementById('profile-form');
+                const profileMessage = document.getElementById('profile-message');
+                if (profileForm) {
+                    profileForm.addEventListener('submit', async (e) => {
+                        e.preventDefault();
+                        profileMessage.textContent = 'Сохранение...';
+                        profileMessage.style.color = 'var(--text-muted)';
+                        
+                        try {
+                            await apiRequest('/api/user', 'PUT', {
+                                name: profileName.value,
+                                phone: profilePhone.value
+                            });
+                            profileMessage.textContent = 'Данные успешно сохранены!';
+                            profileMessage.style.color = 'green';
+                            setTimeout(() => { profileMessage.textContent = ''; }, 3000);
+                        } catch (err) {
+                            profileMessage.textContent = err.message || 'Ошибка сохранения';
+                            profileMessage.style.color = 'red';
+                        }
+                    });
+                }
             })
             .catch(() => {
                 // Если не авторизован, кидаем на страницу входа
@@ -148,9 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tdRole = document.createElement('td');
                 tdRole.style.padding = '10px';
                 const select = document.createElement('select');
-                select.style.padding = '5px';
-                select.style.borderRadius = '4px';
-                select.style.border = '1px solid #ccc';
+                select.className = 'admin-select';
 
                 ['user', 'worker', 'admin'].forEach(r => {
                     const option = document.createElement('option');
@@ -223,18 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     ? translations[lang]['cta_dashboard']
                     : (lang === 'lt' ? 'Kabinetas' : 'Кабинет');
 
-                // ─── 1. Топбар: добавляем «Кабинет» ────────────────────────────
-                if (topbarContact && !document.getElementById('topbar-cabinet-btn')) {
-                    const btn = document.createElement('a');
-                    btn.id = 'topbar-cabinet-btn';
-                    btn.href = 'dashboard.html';
-                    btn.className = 'topbar__cta';
-                    btn.setAttribute('data-t', 'cta_dashboard');
-                    btn.textContent = cabinetText;
-                    btn.style.marginLeft = '8px';
-                    topbarContact.insertBefore(btn, topbarContact.querySelector('.topbar__cta') || null);
-                }
-
+                // ─── 1. Топбар (кнопки удалены по запросу) ────────────────────────────
+                
                 // ─── 2. Сайдбар: добавляем раздел «Аккаунт» ────────────────────
                 const sidebar = document.querySelector('.sidebar__nav');
                 if (sidebar && !document.getElementById('sidebar-account-section')) {
@@ -280,26 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
             .catch(() => {
-                // ─── 3. Не авторизован: добавляем кнопку «Войти» ───────────────
-                if (topbarContact && !document.getElementById('topbar-login-btn')) {
-                    const loginText = (translations && translations[lang] && translations[lang]['cta_login'])
-                        ? translations[lang]['cta_login']
-                        : (lang === 'lt' ? 'Prisijungti' : 'Войти');
-                    
-                    const btn = document.createElement('a');
-                    btn.id = 'topbar-login-btn';
-                    btn.href = 'login.html';
-                    btn.className = 'topbar__cta';
-                    btn.setAttribute('data-t', 'cta_login');
-                    btn.textContent = loginText;
-                    btn.style.background = 'transparent';
-                    btn.style.color = 'var(--accent)';
-                    btn.style.border = '1px solid var(--accent)';
-                    btn.style.marginRight = '8px';
-                    
-                    // Вставляем ПЕРЕД кнопкой "Получить расчет" (обычно последняя в topbarContact)
-                    topbarContact.insertBefore(btn, topbarContact.querySelector('.topbar__cta') || null);
-                }
+                // ─── 3. Не авторизован (кнопки в топбаре удалены по запросу) ───────
             });
     }
 });

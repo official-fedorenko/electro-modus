@@ -34,18 +34,25 @@
                     <h2 class="section__title">Добро пожаловать в личный кабинет!</h2>
                     <p class="section__subtitle" id="dashboard-email">Загрузка...</p>
                     
-                    <div class="dashboard-cards">
+                    <div class="dashboard-grid" style="display: grid; gap: 20px; grid-template-columns: 1fr; margin-top: 20px;">
                         <div class="card">
-                            <div class="card__icon">📄</div>
-                            <h3 class="card__title">Ваши заявки</h3>
-                            <p class="card__text">Здесь будет список ваших активных и завершенных проектов.</p>
-                            <span class="card__tag">В разработке</span>
-                        </div>
-                        <div class="card">
-                            <div class="card__icon">💬</div>
-                            <h3 class="card__title">Сообщения</h3>
-                            <p class="card__text">История переписки с менеджером и электриком.</p>
-                            <span class="card__tag">В разработке</span>
+                            <h3 class="card__title" style="margin-bottom: 15px;">Личные данные</h3>
+                            <form id="profile-form" style="display: flex; flex-direction: column; gap: 15px;">
+                                <div>
+                                    <label class="form-label">Email (Логин)</label>
+                                    <input type="email" id="profile-email" class="form-input" disabled style="opacity: 0.7;">
+                                </div>
+                                <div>
+                                    <label class="form-label">Имя</label>
+                                    <input type="text" id="profile-name" class="form-input" placeholder="Введите ваше имя">
+                                </div>
+                                <div>
+                                    <label class="form-label">Телефон</label>
+                                    <input type="tel" id="profile-phone" class="form-input" placeholder="+370 XXX XX XXX">
+                                </div>
+                                <button type="submit" class="btn btn--primary">Сохранить изменения</button>
+                                <p id="profile-message" style="margin-top: 10px; font-size: 0.9rem;"></p>
+                            </form>
                         </div>
                     </div>
 

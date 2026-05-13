@@ -90,7 +90,7 @@ module.exports = {
     async getUserByToken(token) {
         return new Promise((resolve, reject) => {
             db.get(
-                `SELECT u.id, u.email, u.role, s.expires_at 
+                `SELECT u.id, u.email, u.role, u.name, u.phone, s.expires_at 
                  FROM sessions s 
                  JOIN users u ON s.user_id = u.id 
                  WHERE s.token = ?`,
@@ -104,7 +104,7 @@ module.exports = {
                         db.run(`DELETE FROM sessions WHERE token = ?`, [token]);
                         return resolve(null);
                     }
-                    resolve({ id: row.id, email: row.email, role: row.role });
+                    resolve({ id: row.id, email: row.email, role: row.role, name: row.name, phone: row.phone });
                 }
             );
         });

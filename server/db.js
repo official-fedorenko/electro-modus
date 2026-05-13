@@ -28,6 +28,21 @@ function initDb() {
             }
         });
 
+        // Добавление колонки name
+        db.run(`ALTER TABLE users ADD COLUMN name TEXT DEFAULT ''`, (err) => {
+            if (err && !err.message.includes('duplicate column name')) {
+                console.error('Ошибка при добавлении колонки name:', err.message);
+            }
+        });
+
+        // Добавление колонки phone
+        db.run(`ALTER TABLE users ADD COLUMN phone TEXT DEFAULT ''`, (err) => {
+            if (err && !err.message.includes('duplicate column name')) {
+                console.error('Ошибка при добавлении колонки phone:', err.message);
+            }
+        });
+
+
         // Таблица сессий
         db.run(`
             CREATE TABLE IF NOT EXISTS sessions (

@@ -113,7 +113,42 @@ const server = http.createServer(async (req, res) => {
                 }
 
                 res.writeHead(200);
-                return res.end(JSON.stringify({ user: { email: user.email, role: user.role } }));
+                return res.end(JSON.stringify({ user: { email: user.email, role: user.role, name: user.name, phone: user.phone } }));
+            }
+
+            if (req.method === 'PUT' && req.url === '/api/user') {
+                const cookies = parseCookies(req);
+                if (!cookies.session_token) {
+                    res.writeHead(401);
+                    return res.end(JSON.stringify({ error: 'Не авторизован' }));
+                }
+
+                const user = await auth.getUserByToken(cookies.session_token);
+                if (!user) {
+                    res.writeHead(401);
+                    return res.end(JSON.stringify({ error: 'Сессия недействительна' }));
+                }
+
+                const { name, phone } = await parseBody(req);
+                const db = require('./server/db');
+                
+                return new Promise((resolve) => {
+                    db.run(
+                        `UPDATE users SET name = ?, phone = ? WHERE id = ?`,
+                        [name || '', phone || '', user.id],
+                        function(err) {
+                            if (err) {
+                                console.error('Ошибка обновления профиля:', err.message);
+                                res.writeHead(500);
+                                res.end(JSON.stringify({ error: 'Ошибка сервера' }));
+                                return resolve();
+                            }
+                            res.writeHead(200);
+                            res.end(JSON.stringify({ message: 'Профиль обновлен' }));
+                            resolve();
+                        }
+                    );
+                });
             }
 
             // Обработка формы контактов
