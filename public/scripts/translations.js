@@ -147,6 +147,14 @@ const translations = {
         "team_3_role": "Montavimo darbų vadovas",
         "btn_write": "Rašyti",
 
+        // Clients Section
+        "clients_title": "Kam mes dirbame?",
+        "clients_subtitle": "Teikiame paslaugas tiek privatiems asmenims, tiek didelėms įmonėms.",
+        "clients_b2c_title": "Privatiems klientams",
+        "clients_b2c_text": "Smulkūs remonto darbai, rozečių keitimas, gedimų šalinimas, butų ar namų elektros instaliacija.",
+        "clients_b2b_title": "Verslui ir organizacijoms",
+        "clients_b2b_text": "Pramonės objektai, biurai, daugiabučiai. Bendradarbiavimas su rangovais, PVM sąskaitos faktūros, aktavimas.",
+
         // About Page
         "about_main_title": "Apie Electro Modus",
         "about_main_subtitle": "Jūsų patikimas partneris elektros pasaulyje nuo 2012 metų.",
@@ -415,6 +423,14 @@ const translations = {
         "team_2_role": "Менеджер проектов",
         "team_3_role": "Руководитель монтажных работ",
         "btn_write": "Написать",
+
+        // Clients Section
+        "clients_title": "Для кого мы работаем?",
+        "clients_subtitle": "Оказываем услуги как частным лицам, так и крупным компаниям.",
+        "clients_b2c_title": "Частным клиентам",
+        "clients_b2c_text": "Мелкий ремонт, замена розеток, устранение неисправностей, проводка в квартирах и домах.",
+        "clients_b2b_title": "Бизнесу и организациям",
+        "clients_b2b_text": "Крупные объекты, заводы, офисы. Работа с генподрядчиками, составление смет, НДС фактуры, акты.",
 
         // About Page
         "about_main_title": "О компании Electro Modus",
