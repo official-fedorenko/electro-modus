@@ -1,6 +1,18 @@
 (function() {
     // Получаем текущий язык из памяти или ставим LT по умолчанию
-    let currentLang = localStorage.getItem('app-lang') || 'lt';
+    // Получаем язык из памяти, либо определяем по браузеру, либо ставим LT
+    let currentLang = localStorage.getItem('app-lang');
+    
+    if (!currentLang) {
+        const browserLang = navigator.language || navigator.userLanguage;
+        if (browserLang && browserLang.toLowerCase().startsWith('ru')) {
+            currentLang = 'ru';
+        } else {
+            currentLang = 'lt';
+        }
+        // Сохраняем определенный язык, чтобы при следующем заходе не гадать
+        localStorage.setItem('app-lang', currentLang);
+    }
 
     function updatePageContent() {
         const elements = document.querySelectorAll('[data-t]');
