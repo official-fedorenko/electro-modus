@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin-leads.html
+Disallow: /admin-prices.html
+Disallow: /admin.html
+Disallow: /dashboard.html
+
+Sitemap: https://electromodus.lt/sitemap.xml

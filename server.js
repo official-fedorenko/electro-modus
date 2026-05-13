@@ -13,7 +13,10 @@ const MIME_TYPES = {
     '.json': 'application/json; charset=utf-8',
     '.png': 'image/png',
     '.jpg': 'image/jpeg',
-    '.svg': 'image/svg+xml'
+    '.svg': 'image/svg+xml',
+    '.ico': 'image/x-icon',
+    '.txt': 'text/plain; charset=utf-8',
+    '.xml': 'application/xml; charset=utf-8'
 };
 
 // Вспомогательная функция для парсинга тела запроса

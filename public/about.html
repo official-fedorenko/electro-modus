@@ -2,14 +2,27 @@
 <html lang="lt">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5XRTD5G2TD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5XRTD5G2TD');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-t="nav_about">Apie mus — Electro Modus</title>
-    <meta name="description" content="О компании ЭлектроМонтаж Pro — опыт, гарантии, качество.">
+    <meta name="description" content="Apie Electro Modus įmonę — patirtis, garantijos, kokybė.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <meta property="og:title" content="Apie mus — Electro Modus">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://electromodus.lt/about.html">
     <script src="./scripts/translations.js" defer></script>
     <script src="./scripts/i18n.js" defer></script>
     <script src="./scripts/main.js" defer></script>
@@ -29,7 +42,7 @@
                 <button class="lang-btn" data-lang="ru">RU</button>
             </div>
             <span class="topbar__phone" data-t="phone_label">📞 +370 602 70 702</span>
-            <a href="contact.html" class="topbar__cta" data-t="cta_get_calc">Gauti pasiūlymą</a>
+            <a href="tel:+37060270702" class="topbar__cta" data-t="btn_call">Позвонить</a>
         </div>
     </header>
 
@@ -37,7 +50,7 @@
         <!-- SIDEBAR -->
         <aside class="sidebar">
             <nav class="sidebar__nav">
-                <p class="sidebar__section-label" data-t="nav_home">Navigacija</p>
+                <p class="sidebar__section-label" data-t="nav_section_nav">Navigacija</p>
                 <ul class="sidebar__menu">
                     <li><a href="index.html" class="sidebar__link">
                         <span class="sidebar__link-icon">🏠</span> <span data-t="nav_home">Pagrindinis</span>
@@ -83,8 +96,8 @@
                     </div>
                     <div class="feature">
                         <div class="feature__num">02</div>
-                        <h3 class="feature__title">Garantija 3 metai</h3>
-                        <p class="feature__text">Suteikiame rašytinę garantiją visiems darbams. Nemokamas bet kokių defektų šalinimas garantiniu laikotarpiu.</p>
+                        <h3 class="feature__title" data-t="about_guarantee_title">Garantija 3 metai</h3>
+                        <p class="feature__text" data-t="about_guarantee_text">Suteikiame rašytinę garantiją visiems darbams. Nemokamas bet kokių defektų šalinimas garantiniu laikotarpiu.</p>
                     </div>
                     <div class="feature">
                         <div class="feature__num">03</div>
@@ -93,8 +106,8 @@
                     </div>
                     <div class="feature">
                         <div class="feature__num">04</div>
-                        <h3 class="feature__title">Terminų laikymasis</h3>
-                        <p class="feature__text">Pristatome objektus laiku. Vėlavimo atveju dėl mūsų kaltės – kompensacija 1% nuo sumos už kiekvieną dieną.</p>
+                        <h3 class="feature__title" data-t="about_deadlines_title">Terminų laikymasis</h3>
+                        <p class="feature__text" data-t="about_deadlines_text">Pristatome objektus laiku. Vėlavimo atveju dėl mūsų kaltės – kompensacija 1% nuo sumos už kiekvieną dieną.</p>
                     </div>
                 </div>
             </section>

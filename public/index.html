@@ -2,15 +2,59 @@
 <html lang="lt">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5XRTD5G2TD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5XRTD5G2TD');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-t="company_name">Electro Modus — Профессиональный электромонтаж в Литве</title>
+    <title data-t="company_name">Electro Modus — Profesionalus elektros montavimas Lietuvoje</title>
     <meta name="description"
-        content="Профессиональные услуги электромонтажа. Жилые и коммерческие объекты. Быстро, надёжно, безопасно.">
+        content="Profesionalios elektros montavimo paslaugos. Gyvenamieji ir komerciniai objektai. Greitai, patikimai, saugiai.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/styles.css">
+    
+    <!-- SEO & Social Media -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <meta property="og:title" content="Electro Modus — Профессиональный электромонтаж в Литве">
+    <meta property="og:description" content="Pilnas elektros montavimo darbų spektras verslui ir namams. Kokybė, garantija, patirtis.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://electromodus.lt/">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://electromodus.lt/">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Electro Modus",
+      "image": "https://electromodus.lt/assets/og-image.png",
+      "url": "https://electromodus.lt/",
+      "telephone": "+370 602 70 702",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Pragiedrulių Sodų 7-oji g. 11",
+        "addressLocality": "Vilnius",
+        "postalCode": "LT-10246",
+        "addressCountry": "LT"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      }
+    }
+    </script>
+
     <script src="./scripts/translations.js" defer></script>
     <script src="./scripts/i18n.js" defer></script>
     <script src="./scripts/main.js" defer></script>
@@ -30,10 +74,7 @@
                 <button class="lang-btn" data-lang="ru">RU</button>
             </div>
             <a href="tel:+37060270702" class="topbar__phone" data-t="phone_label">📞 +370 602 70 702</a>
-            <a href="login.html" class="topbar__cta" id="auth-btn-top"
-                style="background: transparent; color: var(--accent); border: 1px solid var(--accent); margin-right: 10px;"
-                data-t="cta_login">Войти</a>
-            <a href="contact.html" class="topbar__cta" data-t="cta_get_calc">Получить расчёт</a>
+            <a href="tel:+37060270702" class="topbar__cta" data-t="btn_call">Позвонить</a>
         </div>
     </header>
 
@@ -136,31 +177,6 @@
                 </div>
             </section>
 
-            <!-- WHY US -->
-            <section class="section section--alt">
-                <h2 class="section__title" data-t="why_title">Kodėl renkasi mus</h2>
-                <p class="section__subtitle" data-t="why_subtitle">Jūsų saugumas — mūsų pagrindinis prioritetas.</p>
-                <div class="features">
-                    <div class="feature">
-                        <div class="feature__num">01</div>
-                        <h3 class="feature__title" data-t="feat_1_title">Kvalifikacija</h3>
-                        <p class="feature__text" data-t="feat_1_text">Visi mūsų meistrai turi valstybinius atestatus ir
-                            leidimus bet kokio sudėtingumo darbams.</p>
-                    </div>
-                    <div class="feature">
-                        <div class="feature__num">02</div>
-                        <h3 class="feature__title" data-t="feat_2_title">Прозрачность</h3>
-                        <p class="feature__text" data-t="feat_2_text">Составляем детальную смету до начала работ. Цена
-                            не меняется в процессе монтажа.</p>
-                    </div>
-                    <div class="feature">
-                        <div class="feature__num">03</div>
-                        <h3 class="feature__title" data-t="feat_3_title">Оборудование</h3>
-                        <p class="feature__text" data-t="feat_3_text">Используем только сертифицированные материалы и
-                            профессиональный инструмент.</p>
-                    </div>
-                </div>
-            </section>
 
             <!-- PROCESS -->
             <section class="section">

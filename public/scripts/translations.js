@@ -9,6 +9,7 @@ const translations = {
         "nav_price": "Kainoraštis",
         "nav_docs": "Dokumentai",
         "nav_rekvizitai": "Įmonės duomenys",
+        "nav_section_nav": "Navigacija",
         "company_info_title": "Teisinė informacija",
         "company_name_label": "Pavadinimas",
         "company_code_label": "Įmonės kodas",
@@ -149,6 +150,10 @@ const translations = {
         // About Page
         "about_main_title": "Apie Electro Modus",
         "about_main_subtitle": "Jūsų patikimas partneris elektros pasaulyje nuo 2012 metų.",
+        "about_guarantee_title": "Garantija 3 metai",
+        "about_guarantee_text": "Suteikiame rašytinę garantiją visiems darbams. Nemokamas bet kokių defektų šalinimas garantiniu laikotarpiu.",
+        "about_deadlines_title": "Terminų laikymasis",
+        "about_deadlines_text": "Pristatome objektus laiku. Vėlavimo atveju dėl mūsų kaltės – kompensacija 1% nuo sumos už kiekvieną dieną.",
 
         // Auth Pages
         "auth_login_title": "Prisijungimas",
@@ -273,6 +278,7 @@ const translations = {
         "nav_price": "Прайс-лист",
         "nav_docs": "Документы",
         "nav_rekvizitai": "Данные компании",
+        "nav_section_nav": "Навигация",
         "company_info_title": "Юридическая информация",
         "company_name_label": "Название",
         "company_code_label": "Код компании",
@@ -413,6 +419,10 @@ const translations = {
         // About Page
         "about_main_title": "О компании Electro Modus",
         "about_main_subtitle": "Ваш надежный партнер в мире электрики с 2012 года.",
+        "about_guarantee_title": "Гарантия 3 года",
+        "about_guarantee_text": "Предоставляем письменную гарантию на все работы. Бесплатное устранение любых дефектов в течение гарантийного срока.",
+        "about_deadlines_title": "Соблюдение сроков",
+        "about_deadlines_text": "Сдаем объекты вовремя. В случае задержки по нашей вине — компенсация 1% от суммы за каждый день.",
 
         // Auth Pages
         "auth_login_title": "Вход в кабинет",
